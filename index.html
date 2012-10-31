@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Moment Datepicker</title>
+
+    <link href="Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="Content/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+    <link href="Content/Prettify/Themes/bootstrap.css" rel="stylesheet" />
+        
+    <script src="Scripts/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="Scripts/moment.js" type="text/javascript"></script>
+    <script src="Scripts/moment.i18n/all.min.js" type="text/javascript"></script>
+    <script src="Scripts/bootstrap.js" type="text/javascript"></script>
+    <script src="Scripts/Prettify/prettify.js"></script>
+    <script src="Scripts/knockout-2.2.0.js" type="text/javascript"></script>
+    <script src="Scripts/underscore.js" type="text/javascript"></script>
+
+    <link href="datepicker/datepicker.css" rel="stylesheet" />
+    <script src="datepicker/moment-datepicker.js"></script>
+
+    <script src="Scripts/site.js" type="text/javascript"></script>
+</head>
+<body>
+    <div>
+        <div class="navbar">
+            <div class="navbar-inner">
+                <ul class="nav">
+                    <li class="active"><a href="index.html">Home</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <header class="jumbotron subhead" id="overview">
+            <div class="container">
+                <h1>Moment Datepicker</h1>
+                <p class="lead">The best bootstrap datepicker!</p>
+                <p>Original code from <a href="http://www.eyecon.ro/bootstrap-datepicker/">Stefan Petre</a>. I also take things from <a href="https://github.com/eternicode/bootstrap-datepicker">Andrew Rowls</a> and <a href="https://github.com/Aymkdn/Datepicker-for-Bootstrap">Aymeric Kodono</a>.</p>
+            </div>
+        </header>
+
+        <div class="container">
+            <section>
+                <h2>Example</h2>
+                <p>Attached to a field with the format specified via options.</p>
+                <div class="well">
+                    <input type="text" class="span2" value="02-16-2012" id="dp1">
+                </div>
+                <p>Attachet to a field with the format specified via data tag.</p>
+                <div class="well">
+                    <input type="text" class="span2" value="02/16/12" data-date-format="mm/dd/yy" id="dp2">
+                </div>
+                <p>As component.</p>
+                <div class="well">
+                    <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                        <input class="span2" size="16" type="text" value="12-02-2012" readonly>
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                    </div>
+                </div>
+                <p>Start with years viewMode.</p>
+                <div class="well">
+                    <div class="input-append date" id="dpYears" data-date="12-02-2012" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                        <input class="span2" size="16" type="text" value="12-02-2012" readonly>
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                    </div>
+                </div>
+                <p>Limit the view mode to months</p>
+                <div class="well">
+                    <div class="input-append date" id="dpMonths" data-date="102/2012" data-date-format="mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
+                        <input class="span2" size="16" type="text" value="02/2012" readonly>
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                    </div>
+                </div>
+                <p>Attached to other elment then field and using events to work with the date values.</p>
+                <div class="well">
+
+
+                    <div class="alert alert-error" id="alert">
+                        <strong>Oh snap!</strong>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Start date<a href="#" class="btn small" id="dp4" data-date-format="yyyy-mm-dd" data-date="2012-02-20">Change</a></th>
+                                <th>End date<a href="#" class="btn small" id="dp5" data-date-format="yyyy-mm-dd" data-date="2012-02-25">Change</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="startDate">2012-02-20</td>
+                                <td id="endDate">2012-02-25</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <h2>Using bootstrap-datepicker.js</h2>
+                <p>Call the datepicker via javascript:</p>
+                <pre class="prettyprint linenums">$('.datepicker').datepicker()</pre>
+                <h3>Options</h3>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 100px;">Name</th>
+                            <th style="width: 50px;">type</th>
+                            <th style="width: 100px;">default</th>
+                            <th>description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>format</td>
+                            <td>string</td>
+                            <td>'mm/dd/yyyy'</td>
+                            <td>the date format, combination of  d, dd, m, mm, yy, yyy.</td>
+                        </tr>
+                        <tr>
+                            <td>weekStart</td>
+                            <td>integer</td>
+                            <td>0</td>
+                            <td>day of the week start. 0 for Sunday -  6 for Saturday</td>
+                        </tr>
+                        <tr>
+                            <td>viewMode</td>
+                            <td>string|integer</td>
+                            <td>0 = 'days'</td>
+                            <td>set the start view mode. Accepts: 'days', 'months', 'years', 0 for days, 1 for months and 2 for years</td>
+                        </tr>
+                        <tr>
+                            <td>minViewMode</td>
+                            <td>string|integer</td>
+                            <td>0 = 'days'</td>
+                            <td>set a limit for view mode. Accepts: 'days', 'months', 'years', 0 for days, 1 for months and 2 for years</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Markup</h3>
+                <p>Format a component.</p>
+                <pre class="prettyprint linenums">
+&lt;div class=&quot;input-append date&quot; id=&quot;dp3&quot; data-date=&quot;12-02-2012&quot; data-date-format=&quot;dd-mm-yyyy&quot;&gt;
+    &lt;input class=&quot;span2&quot; size=&quot;16&quot; type=&quot;text&quot; value=&quot;12-02-2012&quot;&gt;
+    &lt;span class=&quot;add-on&quot;&gt;&lt;i class=&quot;icon-th&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;/div&gt;
+</pre>
+                <h3>Methods</h3>
+                <h4>.datepicker(options)</h4>
+                <p>Initializes an datepicker.</p>
+                <h4>.datepicker('show')</h4>
+                <p>Show the datepicker.</p>
+                <h4>.datepicker('hide')</h4>
+                <p>Hide the datepicker.</p>
+                <h4>.datepicker('place')</h4>
+                <p>Updates the date picker's position relative to the element</p>
+                <h4>.datepicker('setValue', value)</h4>
+                <p>Set a new value for the datepicker. It cand be a string in the specified format or a Date object.</p>
+
+
+                <h3>Events</h3>
+                <p>Datepicker class exposes a few events for manipulating the dates.</p>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 150px;">Event</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>show</td>
+                            <td>This event fires immediately when the date picker is displayed.</td>
+                        </tr>
+                        <tr>
+                            <td>hide</td>
+                            <td>This event is fired immediately when the date picker is hidden.</td>
+                        </tr>
+                        <tr>
+                            <td>changeDate</td>
+                            <td>This event is fired when the date is changed.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pre class="prettyprint linenums">
+$(&#039;#dp5&#039;).datepicker()
+    .on(&#039;changeDate&#039;, function(ev){
+        if (ev.date.valueOf() &lt; startDate.valueOf()){
+            ....
+        }
+    });
+</pre>
+            </section>
+        </div>
+        <footer>
+        </footer>
+</body>
+</html>
