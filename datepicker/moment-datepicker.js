@@ -88,6 +88,9 @@
         getMoment: function () {
             return this.moment;
         },
+        getMomentOrNow: function () {
+            return this.moment || moment().hours(0).minutes(0).seconds(0).milliseconds(0);
+        },
         getDate: function () {
             return this.moment ? this.moment.toDate() : null;
         },
@@ -143,7 +146,7 @@
         setValue: function (newDate) {
             this.moment = DPGlobal.parseDate(newDate, this.format);
             this.set();
-            var mmnt = this.moment || moment();
+            var mmnt = this.getMomentOrNow();
             this.viewDate = new Date(mmnt.year(), mmnt.month(), 1, 0, 0, 0, 0);
             this.fill();
         },
@@ -161,7 +164,7 @@
 				typeof newDate === 'string' ? newDate : (this.isInput ? this.element.prop('value') : this.element.data('date')),
 				this.format
 			);
-            var mmnt = this.moment || moment();
+            var mmnt = this.getMomentOrNow();
             this.viewDate = new Date(mmnt.year(), mmnt.month(), 1, 0, 0, 0, 0);
             this.fill();
         },
@@ -186,7 +189,7 @@
         },
 
         fill: function () {
-            var mmnt = this.moment || moment();
+            var mmnt = this.getMomentOrNow();
             var d = new Date(this.viewDate),
 				year = d.getFullYear(),
 				month = d.getMonth(),
