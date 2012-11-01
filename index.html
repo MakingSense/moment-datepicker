@@ -48,25 +48,25 @@
                 </div>
                 <p>Attachet to a field with the format specified via data tag.</p>
                 <div class="well">
-                    <input type="text" class="span2" value="02/16/12" data-date-format="mm/dd/yy" id="dp2">
+                    <input type="text" class="span2" value="02/16/12" data-date-format="MM/DD/YY" id="dp2">
                 </div>
                 <p>As component.</p>
                 <div class="well">
-                    <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                    <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="DD-MM-YYYY">
                         <input class="span2" size="16" type="text" value="12-02-2012" readonly>
                         <span class="add-on"><i class="icon-calendar"></i></span>
                     </div>
                 </div>
                 <p>Start with years viewMode.</p>
                 <div class="well">
-                    <div class="input-append date" id="dpYears" data-date="12-02-2012" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                    <div class="input-append date" id="dpYears" data-date="12-02-2012" data-date-format="DD-MM-YYYY" data-date-viewmode="years">
                         <input class="span2" size="16" type="text" value="12-02-2012" readonly>
                         <span class="add-on"><i class="icon-calendar"></i></span>
                     </div>
                 </div>
                 <p>Limit the view mode to months</p>
                 <div class="well">
-                    <div class="input-append date" id="dpMonths" data-date="102/2012" data-date-format="mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
+                    <div class="input-append date" id="dpMonths" data-date="102/2012" data-date-format="MM/YYYY" data-date-viewmode="years" data-date-minviewmode="months">
                         <input class="span2" size="16" type="text" value="02/2012" readonly>
                         <span class="add-on"><i class="icon-calendar"></i></span>
                     </div>
@@ -81,8 +81,8 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Start date<a href="#" class="btn small" id="dp4" data-date-format="yyyy-mm-dd" data-date="2012-02-20">Change</a></th>
-                                <th>End date<a href="#" class="btn small" id="dp5" data-date-format="yyyy-mm-dd" data-date="2012-02-25">Change</a></th>
+                                <th>Start date<a href="#" class="btn small" id="dp4" data-date-format="YYYY-MM-DD" data-date="2012-02-20">Change</a></th>
+                                <th>End date<a href="#" class="btn small" id="dp5" data-date-format="YYYY-MM-DD" data-date="2012-02-25">Change</a></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -111,8 +111,8 @@
                         <tr>
                             <td>format</td>
                             <td>string</td>
-                            <td>'mm/dd/yyyy'</td>
-                            <td>the date format, combination of  d, dd, m, mm, yy, yyy.</td>
+                            <td>'MM/DD/YYYY'</td>
+                            <td>the date format, <a href="http://momentjs.com/docs/#/displaying/format/">see details...</a>.</td>
                         </tr>
                         <tr>
                             <td>weekStart</td>
