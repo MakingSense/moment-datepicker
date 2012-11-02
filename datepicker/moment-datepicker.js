@@ -172,8 +172,9 @@
         fillDow: function () {
             var dowCnt = this.weekStart;
             var html = '<tr>';
+            var daysMin = moment.weekdaysMin;
             while (dowCnt < this.weekStart + 7) {
-                html += '<th class="dow">' + DPGlobal.dates.daysMin[(dowCnt++) % 7] + '</th>';
+                html += '<th class="dow">' + daysMin[(dowCnt++) % 7] + '</th>';
             }
             html += '</tr>';
             this.picker.find('.datepicker-days thead').append(html);
@@ -182,8 +183,9 @@
         fillMonths: function () {
             var html = '';
             var i = 0
+            var monthsShort = moment.monthsShort;
             while (i < 12) {
-                html += '<span class="month">' + DPGlobal.dates.monthsShort[i++] + '</span>';
+                html += '<span class="month">' + monthsShort[i++] + '</span>';
             }
             this.picker.find('.datepicker-months td').append(html);
         },
@@ -195,7 +197,7 @@
 				month = d.getMonth(),
 				currentDate = mmnt.valueOf();
             this.picker.find('.datepicker-days th:eq(1)')
-						.text(DPGlobal.dates.months[month] + ' ' + year);
+						.text(moment.months[month] + ' ' + year);
             var prevMonth = new Date(year, month - 1, 28, 0, 0, 0, 0),
 				day = DPGlobal.getDaysInMonth(prevMonth.getFullYear(), prevMonth.getMonth());
             prevMonth.setDate(day);
@@ -370,13 +372,6 @@
 			    navFnc: 'FullYear',
 			    navStep: 10
 			}],
-        dates: {
-            days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-            daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-            months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-            monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        },
         isLeapYear: function (year) {
             return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0))
         },

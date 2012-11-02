@@ -12,6 +12,7 @@ interface JQuery {
 
 $(function () {
     window.prettyPrint && window.prettyPrint();
+    moment.lang('en');
     //moment.lang('es');
 
     $('#dp1').datepicker({
