@@ -198,33 +198,32 @@
 				currentDate = mmnt.valueOf();
             this.picker.find('.datepicker-days th:eq(1)')
 						.text(moment.months[month] + ' ' + year);
-            var prevMonth = new Date(year, month - 1, 28, 0, 0, 0, 0),
-				day = DPGlobal.getDaysInMonth(prevMonth.getFullYear(), prevMonth.getMonth());
-            prevMonth.setDate(day);
-            prevMonth.setDate(day - (prevMonth.getDay() - this.weekStart + 7) % 7);
-            var nextMonth = new Date(prevMonth);
-            nextMonth.setDate(nextMonth.getDate() + 42);
-            nextMonth = nextMonth.valueOf();
+
+            var prevMonth = moment([year, month, 0]);
+            prevMonth.day(prevMonth.day() - (prevMonth.day() - this.weekStart + 7) % 7);
+
+            var nextMonthVal = moment(prevMonth).add('days', 42).valueOf();
+
             html = [];
             var clsName;
-            while (prevMonth.valueOf() < nextMonth) {
-                if (prevMonth.getDay() === this.weekStart) {
+            while (prevMonth.valueOf() < nextMonthVal) {
+                if (prevMonth.day() === this.weekStart) {
                     html.push('<tr>');
                 }
                 clsName = '';
-                if (prevMonth.getMonth() < month) {
+                if (prevMonth.month() < month) {
                     clsName += ' old';
-                } else if (prevMonth.getMonth() > month) {
+                } else if (prevMonth.month() > month) {
                     clsName += ' new';
                 }
                 if (prevMonth.valueOf() === currentDate) {
                     clsName += ' active';
                 }
-                html.push('<td class="day' + clsName + '">' + prevMonth.getDate() + '</td>');
-                if (prevMonth.getDay() === this.weekEnd) {
+                html.push('<td class="day' + clsName + '">' + prevMonth.date() + '</td>');
+                if (prevMonth.day() === this.weekEnd) {
                     html.push('</tr>');
                 }
-                prevMonth.setDate(prevMonth.getDate() + 1);
+                prevMonth.add('days', 1);
             }
             this.picker.find('.datepicker-days tbody').empty().append(html.join(''));
             var currentYear = mmnt.year();
@@ -372,12 +371,6 @@
 			    navFnc: 'FullYear',
 			    navStep: 10
 			}],
-        isLeapYear: function (year) {
-            return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0))
-        },
-        getDaysInMonth: function (year, month) {
-            return [31, (DPGlobal.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month]
-        },
         parseDate: function (value, format) {
             var mmnt = null;
             if (typeof value === "string") {
