@@ -37,7 +37,7 @@
             this.element.on({
                 focus: $.proxy(this.show, this),
                 blur: $.proxy(this.hide, this),
-                keyup: $.proxy(this.update, this)
+                keyup: $.proxy(function () { this.update(); }, this)
             });
         } else {
             if (this.component) {
@@ -86,10 +86,7 @@
     Datepicker.prototype = {
         constructor: Datepicker,
         getMoment: function () {
-            return this.moment;
-        },
-        getMomentOrNow: function () {
-            return this.moment || moment().hours(0).minutes(0).seconds(0).milliseconds(0);
+            return this.moment ? this.moment.clone() : null;
         },
         getDate: function () {
             return this.moment ? this.moment.toDate() : null;
@@ -99,6 +96,9 @@
         },
         getIso: function () {
             return this.moment ? this.moment.format('YYYY-MM-DDT00:00:00') : null;
+        },
+        getValueOf: function () {
+            return this.moment ? this.moment.valueOf() : null;
         },
         show: function (e) {
             this.picker.show();
@@ -131,8 +131,12 @@
             });
         },
 
-        set: function () {
+        set: function (newDate) {
+            if (typeof newDate !== 'undefined') {
+                this.update(newDate);
+            }
             var formated = this.getFormated();
+
             if (!this.isInput) {
                 if (this.component) {
                     this.element.find('input').prop('value', formated);
@@ -142,15 +146,7 @@
                 this.element.prop('value', formated);
             }
         },
-
-        setValue: function (newDate) {
-            this.moment = DPGlobal.parseDate(newDate, this.format);
-            this.set();
-            var mmnt = this.getMomentOrNow();
-            this.viewDate = new Date(mmnt.year(), mmnt.month(), 1, 0, 0, 0, 0);
-            this.fill();
-        },
-
+        
         place: function () {
             var offset = this.component ? this.component.offset() : this.element.offset();
             this.picker.css({
@@ -160,13 +156,26 @@
         },
 
         update: function (newDate) {
+            var originalValue = this.getValueOf();
+
+            var date = typeof newDate === 'undefined'
+                ? (this.isInput ? this.element.prop('value') : this.element.data('date'))
+                : newDate;
+
             this.moment = DPGlobal.parseDate(
-				typeof newDate === 'string' ? newDate : (this.isInput ? this.element.prop('value') : this.element.data('date')),
+				date,
 				this.format
 			);
-            var mmnt = this.getMomentOrNow();
-            this.viewDate = new Date(mmnt.year(), mmnt.month(), 1, 0, 0, 0, 0);
-            this.fill();
+
+            var newValue = this.getValueOf();
+            
+            if (originalValue != newValue) {
+                this.viewDate = this.getMoment() || moment().hours(0).minutes(0).seconds(0).milliseconds(0);
+                this.fill();
+                this.element.trigger({
+                    type: 'changeDate'
+                });
+            }
         },
 
         fillDow: function () {
@@ -191,31 +200,37 @@
         },
 
         fill: function () {
-            var mmnt = this.getMomentOrNow();
-            var d = new Date(this.viewDate),
-				year = d.getFullYear(),
-				month = d.getMonth(),
-				currentDate = mmnt.valueOf();
+            var year = this.viewDate.year();
+            var month = this.viewDate.month();
+            var currentMoment = this.getMoment();
+            var currentDate = currentMoment ? currentMoment.valueOf() : null; //TODO: use diff
+            var currentYear = currentMoment ? currentMoment.year() : null;
+            var currentMonth = currentMoment ? currentMoment.month() : null;
+            
             this.picker.find('.datepicker-days th:eq(1)')
 						.text(moment.months[month] + ' ' + year);
 
             var prevMonth = moment([year, month, 0]);
             prevMonth.day(prevMonth.day() - (prevMonth.day() - this.weekStart + 7) % 7);
 
+            //TODO: use diff
             var nextMonthVal = moment(prevMonth).add('days', 42).valueOf();
 
             html = [];
             var clsName;
+            //TODO: use diff
             while (prevMonth.valueOf() < nextMonthVal) {
                 if (prevMonth.day() === this.weekStart) {
                     html.push('<tr>');
                 }
                 clsName = '';
+                //TODO: use diff
                 if (prevMonth.month() < month) {
                     clsName += ' old';
                 } else if (prevMonth.month() > month) {
                     clsName += ' new';
                 }
+                //TODO: use diff
                 if (prevMonth.valueOf() === currentDate) {
                     clsName += ' active';
                 }
@@ -226,7 +241,6 @@
                 prevMonth.add('days', 1);
             }
             this.picker.find('.datepicker-days tbody').empty().append(html.join(''));
-            var currentYear = mmnt.year();
 
             var months = this.picker.find('.datepicker-months')
 						.find('th:eq(1)')
@@ -234,7 +248,7 @@
 							.end()
 						.find('span').removeClass('active');
             if (currentYear === year) {
-                months.eq(mmnt.month()).addClass('active'); 
+                months.eq(currentMonth).addClass('active');
             }
 
             html = '';
@@ -265,11 +279,8 @@
                                 break;
                             case 'prev':
                             case 'next':
-                                this.viewDate['set' + DPGlobal.modes[this.viewMode].navFnc].call(
-									this.viewDate,
-									this.viewDate['get' + DPGlobal.modes[this.viewMode].navFnc].call(this.viewDate) +
-									DPGlobal.modes[this.viewMode].navStep * (target[0].className === 'prev' ? -1 : 1)
-								);
+                                var nav = DPGlobal.modes[this.viewMode];
+                                this.viewDate.add(nav.navFnc, nav.navStep * (target[0].className === 'prev' ? -1 : 1));
                                 this.fill();
                                 this.set();
                                 break;
@@ -277,39 +288,38 @@
                         break;
                     case 'span':
                         if (target.is('.month')) {
-                            var month = target.parent().find('span').index(target);
-                            this.viewDate.setMonth(month);
+                            
+                            var newMonth = target.parent().find('span').index(target);
+                            //this.viewDate.month(newMonth); I do not like how it works when the new month have less days
+                            this.viewDate.add('months', newMonth - this.viewDate.month());
+
                         } else {
                             var year = parseInt(target.text(), 10) || 0;
-                            this.viewDate.setFullYear(year);
+                            this.viewDate.year(year);
                         }
+                        
                         if (this.viewMode !== 0) {
-                            this.moment = moment(this.viewDate);
-                            this.element.trigger({
-                                type: 'changeDate'
-                            });
+                            this.showMode(-1);
+                            this.set(this.viewDate);
+                        } else {
+                            //Cuando ocurre?
+                            this.showMode(-1);
+                            this.fill();
+                            this.set();
                         }
-                        this.showMode(-1);
-                        this.fill();
-                        this.set();
+                        
                         break;
                     case 'td':
                         if (target.is('.day')) {
                             var day = parseInt(target.text(), 10) || 1;
-                            var month = this.viewDate.getMonth();
+                            var month = this.viewDate.month();
                             if (target.is('.old')) {
                                 month -= 1;
                             } else if (target.is('.new')) {
                                 month += 1;
                             }
-                            var year = this.viewDate.getFullYear();
-                            this.moment = moment([year, month, day]);
-                            this.viewDate = new Date(year, month, Math.min(28, day), 0, 0, 0, 0);
-                            this.fill();
-                            this.set();
-                            this.element.trigger({
-                                type: 'changeDate'
-                            });
+                            var year = this.viewDate.year();
+                            this.set([year, month, day]);
                         }
                         break;
                 }
@@ -358,17 +368,17 @@
         modes: [
 			{
 			    clsName: 'days',
-			    navFnc: 'Month',
+			    navFnc: 'months',
 			    navStep: 1
 			},
 			{
 			    clsName: 'months',
-			    navFnc: 'FullYear',
+			    navFnc: 'years',
 			    navStep: 1
 			},
 			{
 			    clsName: 'years',
-			    navFnc: 'FullYear',
+			    navFnc: 'years',
 			    navStep: 10
 			}],
         parseDate: function (value, format) {
