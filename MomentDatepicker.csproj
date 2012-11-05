@@ -51,11 +51,13 @@
     <Content Include="Content\Prettify\Themes\desert.css" />
     <Content Include="Content\Prettify\Themes\sons-of-obsidian.css" />
     <Content Include="Content\Prettify\Themes\sunburst.css" />
+    <Content Include="moment-datepicker\moment-datepicker-ko.js" />
     <Content Include="moment-datepicker\moment-datepicker.js" />
     <Content Include="moment-datepicker\datepicker.css" />
     <Content Include="index.html" />
     <TypeScriptCompile Include="Scripts\site.ts" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="moment-datepicker\moment-datepicker.d.ts" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

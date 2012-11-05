@@ -1,19 +1,23 @@
 ///<reference path="moment.d.ts" />
 ///<reference path='jquery.d.ts' />
+///<reference path="Knockout.d.ts" />
+///<reference path="../moment-datepicker/moment-datepicker.d.ts" />
+
 
 interface Window extends ViewCSS, MSEventAttachmentTarget, MSWindowExtensions, WindowPerformance, ScreenView, EventTarget, WindowLocalStorage, WindowSessionStorage, WindowTimers {
     prettyPrint: () => void;
-}
-
-interface JQuery {
-    datepicker(options?: any): JQuery;
-    datepicker(action: string, value?: any): any;
 }
 
 $(function () {
     window.prettyPrint && window.prettyPrint();
     moment.lang('en');
     //moment.lang('es');
+
+    var model = {
+        birthday: ko.observable('02/12/1978')
+        };
+
+    ko.applyBindings(model);
 
     $('#dp1').datepicker({
         format: 'MM-DD-YYYY'

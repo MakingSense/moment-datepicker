@@ -1,6 +1,10 @@
 $(function () {
     window.prettyPrint && window.prettyPrint();
     moment.lang('en');
+    var model = {
+        birthday: ko.observable('02/12/1978')
+    };
+    ko.applyBindings(model);
     $('#dp1').datepicker({
         format: 'MM-DD-YYYY'
     });

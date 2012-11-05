@@ -18,6 +18,7 @@
 
     <link href="moment-datepicker/datepicker.css" rel="stylesheet" />
     <script src="moment-datepicker/moment-datepicker.js"></script>
+    <script src="moment-datepicker/moment-datepicker-ko.js"></script>
 
     <script src="Scripts/site.js" type="text/javascript"></script>
 </head>
@@ -45,6 +46,11 @@
                 <p>Attached to a field with the format specified via options.</p>
                 <div class="well">
                     <input type="text" class="span2" value="02-16-2012" id="dp1">
+                </div>
+                <p>Use KnockOut.js custom binding.</p>
+                <div class="well">
+                    <input type="text" class="span2" data-bind="datepicker: birthday, datepickerOptions: { dataType: 'iso', format: 'DD/MM/YYYY' }">
+                    <input type="text" class="span2" data-bind="value: birthday">
                 </div>
                 <p>Attachet to a field with the format specified via data tag.</p>
                 <div class="well">
