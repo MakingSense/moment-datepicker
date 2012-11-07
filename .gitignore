@@ -22,3 +22,4 @@ TestResults
 App_Data
 [Tt]humbs.db
 .DS_Store
+nuget/*.nupkg

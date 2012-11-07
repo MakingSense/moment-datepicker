@@ -56,6 +56,10 @@
     <Content Include="moment-datepicker\datepicker.css" />
     <Content Include="index.html" />
     <TypeScriptCompile Include="Scripts\site.ts" />
+    <Content Include="moment-datepicker\moment-datepicker.min.js">
+      <DependentUpon>moment-datepicker.js</DependentUpon>
+    </Content>
+    <Content Include="nuget\MomentDatepicker.nuspec" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="moment-datepicker\moment-datepicker.d.ts" />
     <Content Include="Scripts\bootstrap.js" />
