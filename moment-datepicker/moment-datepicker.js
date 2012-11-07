@@ -169,7 +169,7 @@
 
             var newValue = this.getValueOf();
             
-            if (originalValue != newValue) {
+            if (!this.viewDate || originalValue != newValue) {
                 this.viewDate = this.getMoment() || moment().hours(0).minutes(0).seconds(0).milliseconds(0);
                 this.fill();
                 this.element.trigger({

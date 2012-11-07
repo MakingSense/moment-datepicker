@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>MomentDatepicker</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>andresmoschini</authors>
     <owners>andresmoschini</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>http://makingsense.github.com/moment-datepicker/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A JavaScript Datepicker that takes advantage of twitter-bootstrap and moment.js. Ready for TypeScript and Knockout</description>
-    <releaseNotes>initial version</releaseNotes>
+    <releaseNotes>Fix issue initializing datepicker with empty value</releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>Datepicker Bootstrap Moment jQuery Knockout TypeScript</tags>
     <dependencies>
