@@ -240,9 +240,9 @@
                 }
                 clsName = '';
                 //TODO: use diff
-                if (prevMonth.month() < month) {
+                if (prevMonth.year() < year || (prevMonth.year() == year && prevMonth.month() < month)) {
                     clsName += ' old';
-                } else if (prevMonth.month() > month) {
+                } else if (prevMonth.year() > year || (prevMonth.year() == year && prevMonth.month() > month)) {
                     clsName += ' new';
                 }
                 //TODO: use diff
@@ -331,7 +331,7 @@
                                 month += 1;
                             }
                             var year = this.viewDate.year();
-                            this.set([year, month, day]);
+                            this.set(moment([year, month, day]));
                         }
                         break;
                 }
