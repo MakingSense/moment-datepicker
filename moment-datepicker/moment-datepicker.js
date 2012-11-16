@@ -36,8 +36,17 @@
         if (this.isInput) {
             this.element.on({
                 focus: $.proxy(this.show, this),
-                blur: $.proxy(this.hide, this),
-                keyup: $.proxy(function () { this.update(); }, this)
+                blur: $.proxy(function (e) { 
+                    this.hide();
+                    this.triggerChangeDate();
+                }, this),
+                input: $.proxy(function (e) {
+                    this.updateFromValue(true);
+                }, this),
+                keyup: $.proxy(function (e) {
+                    if (e.keyCode == 13)
+                        this.updateFromValue();
+                }, this)
             });
         } else {
             if (this.component) {
@@ -79,7 +88,7 @@
         this.weekEnd = this.weekStart === 0 ? 6 : this.weekStart - 1;
         this.fillDow();
         this.fillMonths();
-        this.update();
+        this.updateFromValue();
         this.showMode();
     };
 
@@ -146,29 +155,36 @@
                 left: offset.left
             });
         },
-
-        update: function (newDate) {
-            
-            var originalValue = this.moment ? this.moment.valueOf() : null;;
-
-            var date = typeof newDate === 'undefined'
-                ? (this.isInput ? this.element.prop('value') : this.element.data('date'))
-                : newDate;
-
-            this.moment = DPGlobal.parseDate(
-				date,
-				this.format
-			);
-
+        lastValue: null,
+        triggerChangeDate: function () {
             var newValue = this.moment ? this.moment.valueOf() : null;
-            
-            if (!this.viewDate || originalValue != newValue) {
-                this.viewDate = this.get() || moment().hours(0).minutes(0).seconds(0).milliseconds(0);
-                this.fill();
+            if (newValue != this.lastValue) {
+                this.lastValue = newValue;
                 this.element.trigger({
                     type: 'changeDate'
                 });
             }
+        },
+        updateFromValue: function (ommitEvent) {
+            this.update(this.isInput ? this.element.prop('value') : this.element.data('date'), ommitEvent);
+        },
+
+        update: function (newDate, ommitEvent) {
+            var originalValue = this.moment ? this.moment.valueOf() : null;
+
+            this.moment = DPGlobal.parseDate(newDate, this.format);
+
+            var newValue = this.moment ? this.moment.valueOf() : null;
+
+            if (!this.viewDate || originalValue != newValue) {
+                this.viewDate = this.get() || moment().hours(0).minutes(0).seconds(0).milliseconds(0);
+                this.fill();
+                this.element.trigger({
+                    type: 'changeDateInstant'
+                });
+            }
+            if (!ommitEvent)
+                this.triggerChangeDate();
         },
 
         fillDow: function () {
