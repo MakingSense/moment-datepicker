@@ -2,8 +2,12 @@ $(function () {
     window.prettyPrint && window.prettyPrint();
     moment.lang('en');
     var model = {
-        birthday: ko.observable('02/12/1978')
+        birthdayIso: ko.observable('1978-12-02'),
+        birthdayFormat: ko.observable('2/12/78'),
+        birthdayDate: ko.observable(new Date('1978-12-02T00:00:00')),
+        birthdayMoment: ko.observable(moment('1978-12-02T00:00:00'))
     };
+    ko.applyBindings(model);
     $('#dp1').datepicker({
         format: 'MM-DD-YYYY'
     });

@@ -56,10 +56,25 @@
                 <div class="well">
                     <input type="text" class="span2" value="10-11-2012" id="dp1">
                 </div>
-                <p>Use KnockOut.js custom binding.</p>
+                <p>Use KnockOut.js ISO-8601 binding.</p>
                 <div class="well">
-                    <input type="text" class="span2" data-bind="datepicker: birthday, datepickerOptions: { dataType: 'iso', format: 'DD/MM/YYYY' }">
-                    <input type="text" class="span2" data-bind="value: birthday">
+                    <input type="text" class="span2" data-bind="datepicker: birthdayIso, datepickerOptions: { format: 'DD/MM/YYYY' }">
+                    <input type="text" class="span2" data-bind="value: birthdayIso">
+                </div>
+                <p>Use KnockOut.js Format binding.</p>
+                <div class="well">
+                    <input type="text" class="span2" data-bind="datepicker: birthdayFormat, datepickerOptions: { dataType: 'format', format: 'D/M/YY' }">
+                    <input type="text" class="span2" data-bind="value: birthdayFormat">
+                </div>
+                <p>Use KnockOut.js Date binding.</p>
+                <div class="well">
+                    <input type="text" class="span2" data-bind="datepicker: birthdayDate, datepickerOptions: { format: 'D/M/YY' }">
+                    <input type="text" readonly="readonly" class="span4" data-bind="value: ko.toJSON(birthdayDate)">
+                </div>
+                <p>Use KnockOut.js Moment binding.</p>
+                <div class="well">
+                    <input type="text" class="span2" data-bind="datepicker: birthdayMoment, datepickerOptions: { format: 'D/M/YY' }">
+                    <input type="text" readonly="readonly" class="span5" data-bind="value: ko.toJSON(birthdayMoment)">
                 </div>
                 <p>Attachet to a field with the format specified via data tag.</p>
                 <div class="well">
