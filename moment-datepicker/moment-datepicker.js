@@ -85,24 +85,15 @@
 
     Datepicker.prototype = {
         constructor: Datepicker,
-        getMoment: function () {
-            return this.moment ? this.moment.clone() : null;
+        get: function () {
+            return (this.moment && this.moment.clone());
         },
-        getDate: function () {
-            return this.moment ? this.moment.toDate() : null;
-        },
-        getFormated: function () {
-            return this.moment ? this.moment.format(this.format) : "";
-        },
-        getIso: function () {
-            return this.moment ? this.moment.format('YYYY-MM-DDT00:00:00') : null;
-        },
-        getValueOf: function () {
-            return this.moment ? this.moment.valueOf() : null;
+        getAsText: function (format) {
+            return (this.moment && this.moment.format(format || this.format));
         },
         show: function (e) {
             this.picker.show();
-            this.height = this.component ? this.component.outerHeight() : this.element.outerHeight();
+            this.height = (this.component && this.component.outerHeight()) || this.element.outerHeight();
             this.place();
             $(window).on('resize', $.proxy(this.place, this));
             if (e) {
@@ -135,7 +126,8 @@
             if (typeof newDate !== 'undefined') {
                 this.update(newDate);
             }
-            var formated = this.getFormated();
+            
+            var formated = this.getAsText();
 
             if (!this.isInput) {
                 if (this.component) {
@@ -156,7 +148,8 @@
         },
 
         update: function (newDate) {
-            var originalValue = this.getValueOf();
+            
+            var originalValue = this.moment ? this.moment.valueOf() : null;;
 
             var date = typeof newDate === 'undefined'
                 ? (this.isInput ? this.element.prop('value') : this.element.data('date'))
@@ -167,10 +160,10 @@
 				this.format
 			);
 
-            var newValue = this.getValueOf();
+            var newValue = this.moment ? this.moment.valueOf() : null;
             
             if (!this.viewDate || originalValue != newValue) {
-                this.viewDate = this.getMoment() || moment().hours(0).minutes(0).seconds(0).milliseconds(0);
+                this.viewDate = this.get() || moment().hours(0).minutes(0).seconds(0).milliseconds(0);
                 this.fill();
                 this.element.trigger({
                     type: 'changeDate'
@@ -202,7 +195,7 @@
         fill: function () {
             var year = this.viewDate.year();
             var month = this.viewDate.month();
-            var currentMoment = this.getMoment();
+            var currentMoment = this.get();
             var currentDate = currentMoment ? currentMoment.valueOf() : null; //TODO: use diff
             var currentYear = currentMoment ? currentMoment.year() : null;
             var currentMonth = currentMoment ? currentMoment.month() : null;

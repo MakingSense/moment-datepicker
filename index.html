@@ -54,7 +54,7 @@
                 <h2>Example</h2>
                 <p>Attached to a field with the format specified via options.</p>
                 <div class="well">
-                    <input type="text" class="span2" value="02-16-2012" id="dp1">
+                    <input type="text" class="span2" value="10-11-2012" id="dp1">
                 </div>
                 <p>Use KnockOut.js custom binding.</p>
                 <div class="well">
@@ -63,7 +63,7 @@
                 </div>
                 <p>Attachet to a field with the format specified via data tag.</p>
                 <div class="well">
-                    <input type="text" class="span2" value="02/16/12" data-date-format="MM/DD/YY" id="dp2">
+                    <input type="text" class="span2" value="10-11-12" data-date-format="DD/MM/YY" id="dp2">
                 </div>
                 <p>As component.</p>
                 <div class="well">
@@ -169,16 +169,10 @@
                 <p>Updates the date picker's position relative to the element</p>
                 <h4>.datepicker('set', value)</h4>
                 <p>Set a new value for the datepicker. It cand be a string, moment, date, etc.</p>
-                <h4>.datepicker('getMoment')</h4>
+                <h4>.datepicker('get')</h4>
                 <p>Returns a clone of current internal moment object</p>
-                <h4>.datepicker('getDate')</h4>
-                <p>Returns selected date as Date</p>
-                <h4>.datepicker('getFormated')</h4>
+                <h4>.datepicker('getAsText')</h4>
                 <p>Returns selected date as a formated string</p>
-                <h4>.datepicker('getIso')</h4>
-                <p>Returns selected date as an ISO formated string (ie. 2012-11-05T00:00:00)</p>
-
-
                 <h3>Events</h3>
                 <p>Datepicker class exposes a few events for manipulating the dates.</p>
                 <table class="table table-bordered table-striped">
