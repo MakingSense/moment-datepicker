@@ -60,6 +60,7 @@
       <DependentUpon>moment-datepicker.js</DependentUpon>
     </Content>
     <Content Include="nuget\MomentDatepicker.nuspec" />
+    <Content Include="nuget\pack.cmd" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="moment-datepicker\moment-datepicker.d.ts" />
     <Content Include="Scripts\bootstrap.js" />
