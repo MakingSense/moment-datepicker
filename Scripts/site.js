@@ -9,7 +9,8 @@ $(function () {
     };
     ko.applyBindings(model);
     $('#dp1').datepicker({
-        format: 'MM-DD-YYYY'
+        format: 'MM-DD-YYYY',
+        autoHide: false
     });
     $('#dp2').datepicker();
     $('#dp3').datepicker();

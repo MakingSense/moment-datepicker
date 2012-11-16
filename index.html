@@ -58,7 +58,7 @@
                 </div>
                 <p>Use KnockOut.js ISO-8601 binding.</p>
                 <div class="well">
-                    <input type="text" class="span2" data-bind="datepicker: birthdayIso, datepickerOptions: { format: 'DD/MM/YYYY' }">
+                    <input type="text" class="span2" data-bind="datepicker: birthdayIso, datepickerOptions: { format: 'DD/MM/YYYY', autoHide: false }">
                     <input type="text" class="span2" data-bind="value: birthdayIso">
                 </div>
                 <p>Use KnockOut.js Format binding.</p>
@@ -78,25 +78,25 @@
                 </div>
                 <p>Attachet to a field with the format specified via data tag.</p>
                 <div class="well">
-                    <input type="text" class="span2" value="10-11-12" data-date-format="DD/MM/YY" id="dp2">
+                    <input type="text" class="span2" value="10-11-12" data-datepicker-format="DD/MM/YY" data-datepicker-autohide="false" id="dp2">
                 </div>
                 <p>As component.</p>
                 <div class="well">
-                    <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="DD-MM-YYYY">
+                    <div class="input-append date" id="dp3" data-date="12-02-2012" data-datepicker-format="DD-MM-YYYY">
                         <input class="span2" size="16" type="text" value="12-02-2012" readonly>
                         <span class="add-on"><i class="icon-calendar"></i></span>
                     </div>
                 </div>
                 <p>Start with years viewMode.</p>
                 <div class="well">
-                    <div class="input-append date" id="dpYears" data-date="12-02-2012" data-date-format="DD-MM-YYYY" data-date-viewmode="years">
+                    <div class="input-append date" id="dpYears" data-date="12-02-2012" data-datepicker-format="DD-MM-YYYY" data-datepicker-viewmode="years">
                         <input class="span2" size="16" type="text" value="12-02-2012" readonly>
                         <span class="add-on"><i class="icon-calendar"></i></span>
                     </div>
                 </div>
                 <p>Limit the view mode to months</p>
                 <div class="well">
-                    <div class="input-append date" id="dpMonths" data-date="102/2012" data-date-format="MM/YYYY" data-date-viewmode="years" data-date-minviewmode="months">
+                    <div class="input-append date" id="dpMonths" data-date="102/2012" data-datepicker-format="MM/YYYY" data-datepicker-viewmode="years" data-datepicker-minviewmode="months">
                         <input class="span2" size="16" type="text" value="02/2012" readonly>
                         <span class="add-on"><i class="icon-calendar"></i></span>
                     </div>
@@ -111,8 +111,8 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Start date<a href="#" class="btn small" id="dp4" data-date-format="YYYY-MM-DD" data-date="2012-02-20">Change</a></th>
-                                <th>End date<a href="#" class="btn small" id="dp5" data-date-format="YYYY-MM-DD" data-date="2012-02-25">Change</a></th>
+                                <th>Start date<a href="#" class="btn small" id="dp4" data-datepicker-format="YYYY-MM-DD" data-date="2012-02-20">Change</a></th>
+                                <th>End date<a href="#" class="btn small" id="dp5" data-datepicker-format="YYYY-MM-DD" data-date="2012-02-25">Change</a></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -162,13 +162,19 @@
                             <td>0 = 'days'</td>
                             <td>set a limit for view mode. Accepts: 'days', 'months', 'years', 0 for days, 1 for months and 2 for years</td>
                         </tr>
+                        <tr>
+                            <td>autoHide</td>
+                            <td>boolean</td>
+                            <td>true</td>
+                            <td>Close the datepicker when an element is selected</td>
+                        </tr>
                     </tbody>
                 </table>
 
                 <h3>Markup</h3>
                 <p>Format a component.</p>
                 <pre class="prettyprint linenums">
-&lt;div class=&quot;input-append date&quot; id=&quot;dp3&quot; data-date=&quot;12-02-2012&quot; data-date-format=&quot;dd-mm-yyyy&quot;&gt;
+&lt;div class=&quot;input-append date&quot; id=&quot;dp3&quot; data-date=&quot;12-02-2012&quot; data-datepicker-format=&quot;dd-mm-yyyy&quot;&gt;
     &lt;input class=&quot;span2&quot; size=&quot;16&quot; type=&quot;text&quot; value=&quot;12-02-2012&quot;&gt;
     &lt;span class=&quot;add-on&quot;&gt;&lt;i class=&quot;icon-th&quot;&gt;&lt;/i&gt;&lt;/span&gt;
 &lt;/div&gt;

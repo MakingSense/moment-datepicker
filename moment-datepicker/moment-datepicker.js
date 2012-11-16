@@ -23,7 +23,8 @@
 
     var Datepicker = function (element, options) {
         this.element = $(element);
-        this.format = options.format || this.element.data('date-format') || moment.longDateFormat.L; 
+        this.autoHide = true && (options.autoHide !== false) && (this.element.data('datepicker-autohide') !== false);
+        this.format = options.format || this.element.data('datepicker-format') || moment.longDateFormat.L;
         this.picker = $(DPGlobal.template)
 							.appendTo('body')
 							.on({
@@ -46,7 +47,8 @@
                 keyup: $.proxy(function (e) {
                     if (e.keyCode == 13)
                         this.updateFromValue();
-                }, this)
+                }, this),
+                click: $.proxy(this.show, this)
             });
         } else {
             if (this.component) {
@@ -55,7 +57,7 @@
                 this.element.on('click', $.proxy(this.show, this));
             }
         }
-        this.minViewMode = options.minViewMode || this.element.data('date-minviewmode') || 0;
+        this.minViewMode = options.minViewMode || this.element.data('datepicker-minviewmode') || 0;
         if (typeof this.minViewMode === 'string') {
             switch (this.minViewMode) {
                 case 'months':
@@ -69,7 +71,7 @@
                     break;
             }
         }
-        this.viewMode = options.viewMode || this.element.data('date-viewmode') || 0;
+        this.viewMode = options.viewMode || this.element.data('datepicker-viewmode') || 0;
         if (typeof this.viewMode === 'string') {
             switch (this.viewMode) {
                 case 'months':
@@ -84,12 +86,13 @@
             }
         }
         this.startViewMode = this.viewMode;
-        this.weekStart = options.weekStart || this.element.data('date-weekstart') || 0;
+        this.weekStart = options.weekStart || this.element.data('datepicker-weekstart') || 0;
         this.weekEnd = this.weekStart === 0 ? 6 : this.weekStart - 1;
         this.fillDow();
         this.fillMonths();
         this.updateFromValue();
         this.showMode();
+        this.refresh();
     };
 
     Datepicker.prototype = {
@@ -165,6 +168,8 @@
                     type: 'changeDate'
                 });
             }
+            if (this.autoHide)
+                this.hide();
         },
         updateFromValue: function (ommitEvent) {
             this.update(this.isInput ? this.element.prop('value') : this.element.data('date'), ommitEvent);
