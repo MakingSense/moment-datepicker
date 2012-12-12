@@ -139,11 +139,11 @@
 
             if (!this.isInput) {
                 if (this.component) {
-                    this.element.find('input').prop('value', formated);
+                    this.element.find('input').prop('value', formated).change();
                 }
-                this.element.data('date', formated);
+                this.element.data('date', formated).change();
             } else {
-                this.element.prop('value', formated);
+                this.element.prop('value', formated).change();
             }
         },
 
