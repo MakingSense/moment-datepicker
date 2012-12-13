@@ -37,7 +37,7 @@
         if (this.isInput) {
             this.element.on({
                 focus: $.proxy(this.show, this),
-                blur: $.proxy(function (e) { 
+                blur: $.proxy(function (e) {
                     this.hide();
                     this.triggerChangeDate();
                 }, this),
@@ -151,7 +151,7 @@
             this.update(newDate, ommitEvent);
             this.refresh();
         },
-        
+
         place: function () {
             var offset = this.component ? this.component.offset() : this.element.offset();
             this.picker.css({
@@ -221,7 +221,7 @@
             var currentDate = currentMoment ? currentMoment.valueOf() : null; //TODO: use diff
             var currentYear = currentMoment ? currentMoment.year() : null;
             var currentMonth = currentMoment ? currentMoment.month() : null;
-            
+
             this.picker.find('.datepicker-days th:eq(1)')
 						.text(moment.months[month] + ' ' + year);
 
@@ -303,7 +303,7 @@
                         break;
                     case 'span':
                         if (target.is('.month')) {
-                            
+
                             var newMonth = target.parent().find('span').index(target);
                             //this.viewDate.month(newMonth); I do not like how it works when the new month have less days
                             this.viewDate.add('months', newMonth - this.viewDate.month());
@@ -312,14 +312,14 @@
                             var year = parseInt(target.text(), 10) || 0;
                             this.viewDate.year(year);
                         }
-                        
+
                         if (this.viewMode !== this.minViewMode) {
                             this.showMode(-1);
                             this.set(this.viewDate, true);
                         } else {
                             this.set(this.viewDate);
                         }
-                        
+
                         break;
                     case 'td':
                         if (target.is('.day')) {
