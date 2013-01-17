@@ -22,16 +22,32 @@
     // Picker object
 
     var Datepicker = function (element, options) {
+        var that=this;
         this.element = $(element);
+        this.isInline = this.element.is('div'); // inline datepicker
         this.autoHide = true && (options.autoHide !== false) && (this.element.data('datepicker-autohide') !== false);
         this.format = options.format || this.element.data('datepicker-format') || moment.longDateFormat.L;
         this.picker = $(DPGlobal.template)
-							.appendTo('body')
+							.appendTo(this.isInline?this.element:'body')
 							.on({
 							    click: $.proxy(this.click, this),
 							    mousedown: $.proxy(this.mousedown, this)
 							});
         this.isInput = this.element.is('input');
+
+       if (this.isInline) {
+           this.picker.addClass('datepicker-inline');
+       } else {
+          this.picker.addClass('dropdown-menu');
+       }
+
+      $(document).on('mousedown', function(e) {
+         // Clicked outside the datepicker, hide it
+           if ($(e.target).closest('.datepicker.datepicker-inline').length === 0) {
+               that.hide();
+          }
+       });
+
         this.component = !this.isInput && this.element.is('.date') ? this.element.find('.add-on') : false;
 
         if (this.isInput) {
@@ -112,15 +128,14 @@
                 e.stopPropagation();
                 e.preventDefault();
             }
-            if (!this.isInput) {
-                $(document).on('mousedown', $.proxy(this.hide, this));
-            }
+
             this.element.trigger({
                 type: 'show'
             });
         },
 
         hide: function () {
+            if (this.isInline) return;
             this.picker.hide();
             $(window).off('resize', this.place);
             this.viewMode = this.startViewMode;
@@ -153,6 +168,7 @@
         },
 
         place: function () {
+            if (this.isInline) return;
             var offset = this.component ? this.component.offset() : this.element.offset();
             this.picker.css({
                 top: offset.top + this.height,
@@ -415,7 +431,7 @@
 						'</thead>',
         contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>'
     };
-    DPGlobal.template = '<div class="datepicker dropdown-menu">' +
+    DPGlobal.template = '<div class="datepicker ">' +
 							'<div class="datepicker-days">' +
 								'<table class=" table-condensed">' +
 									DPGlobal.headTemplate +
