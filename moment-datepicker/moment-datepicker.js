@@ -101,7 +101,7 @@
             return (this.moment && this.moment.clone());
         },
         getAsText: function (format) {
-            return (this.moment && this.moment.format(format || this.format));
+            return (this.moment && this.moment.format(format || this.format)) || '';
         },
         show: function (e) {
             this.picker.show();
