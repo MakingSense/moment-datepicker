@@ -198,7 +198,7 @@
             var html = '<tr>';
             var daysMin = $.proxy(moment.langData().weekdaysMin, moment.langData());
             while (dowCnt < this.weekStart + 7) {
-                html += '<th class="dow">' + daysMin[(dowCnt++) % 7] + '</th>';
+                html += '<th class="dow">' + daysMin(moment().day((dowCnt++) % 7)) + '</th>';
             }
             html += '</tr>';
             this.picker.find('.datepicker-days thead').append(html);
@@ -209,7 +209,7 @@
             var i = 0
             var monthsShort = $.proxy(moment.langData().monthsShort, moment.langData());
             while (i < 12) {
-                html += '<span class="month">' + monthsShort[i++] + '</span>';
+                html += '<span class="month">' + monthsShort(moment().month(i++)) + '</span>';
             }
             this.picker.find('.datepicker-months td').append(html);
         },
