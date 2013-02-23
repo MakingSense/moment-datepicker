@@ -1,7 +1,9 @@
-///<reference path="moment.d.ts" />
-///<reference path='jquery.d.ts' />
-///<reference path="Knockout.d.ts" />
-///<reference path="../moment-datepicker/moment-datepicker.d.ts" />
+/// <reference path="d.ts/underscore/underscore.d.ts" />
+/// <reference path="d.ts/moment/moment.d.ts" />
+/// <reference path="d.ts/knockout/knockout.d.ts" />
+/// <reference path="d.ts/jquery/jquery.d.ts" />
+/// <reference path="d.ts/bootstrap/bootstrap.d.ts" />
+/// <reference path="../moment-datepicker/moment-datepicker.d.ts" />
 
 
 interface Window extends ViewCSS, MSEventAttachmentTarget, MSWindowExtensions, WindowPerformance, ScreenView, EventTarget, WindowLocalStorage, WindowSessionStorage, WindowTimers {

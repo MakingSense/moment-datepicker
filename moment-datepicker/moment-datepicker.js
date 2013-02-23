@@ -24,7 +24,7 @@
     var Datepicker = function (element, options) {
         this.element = $(element);
         this.autoHide = true && (options.autoHide !== false) && (this.element.data('datepicker-autohide') !== false);
-        this.format = options.format || this.element.data('datepicker-format') || moment.longDateFormat.L;
+        this.format = options.format || this.element.data('datepicker-format') || moment.langData().longDateFormat('L');
         this.picker = $(DPGlobal.template)
 							.appendTo('body')
 							.on({
@@ -196,9 +196,9 @@
         fillDow: function () {
             var dowCnt = this.weekStart;
             var html = '<tr>';
-            var daysMin = moment.weekdaysMin;
+            var daysMin = $.proxy(moment.langData().weekdaysMin, moment.langData());
             while (dowCnt < this.weekStart + 7) {
-                html += '<th class="dow">' + daysMin[(dowCnt++) % 7] + '</th>';
+                html += '<th class="dow">' + daysMin(moment().day((dowCnt++) % 7)) + '</th>';
             }
             html += '</tr>';
             this.picker.find('.datepicker-days thead').append(html);
@@ -207,9 +207,9 @@
         fillMonths: function () {
             var html = '';
             var i = 0
-            var monthsShort = moment.monthsShort;
+            var monthsShort = $.proxy(moment.langData().monthsShort, moment.langData());
             while (i < 12) {
-                html += '<span class="month">' + monthsShort[i++] + '</span>';
+                html += '<span class="month">' + monthsShort(moment().month(i++)) + '</span>';
             }
             this.picker.find('.datepicker-months td').append(html);
         },
@@ -223,7 +223,7 @@
             var currentMonth = currentMoment ? currentMoment.month() : null;
 
             this.picker.find('.datepicker-days th:eq(1)')
-						.text(moment.months[month] + ' ' + year);
+						.text(moment.langData().months(moment().month(month)) + ' ' + year);
 
             var prevMonth = moment([year, month, 0]);
             prevMonth.day(prevMonth.day() - (prevMonth.day() - this.weekStart + 7) % 7);
