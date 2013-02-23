@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>underscore.js</id>
+    <version>1.4.4</version>
+    <authors>Jeremy Ashkenas</authors>
+    <owners>Jeremy Ashkenas</owners>
+    <licenseUrl>https://github.com/documentcloud/underscore/blob/master/LICENSE</licenseUrl>
+    <projectUrl>http://documentcloud.github.com/underscore</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>JavaScripts functional programming helper library.</description>
+    <tags>functional client util browser</tags>
+    <references />
+  </metadata>
+</package>

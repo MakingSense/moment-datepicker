@@ -1,27 +1,43 @@
+# Auto detect text files and perform LF normalization
 * text=auto
 
 # These files are text and should be normalized (convert crlf => lf)
-*.cs      text diff=csharp
-*.xaml    text
-*.csproj  text
-*.sln     text
 *.tt      text
 *.ps1     text
 *.cmd     text
-*.msbuild text
 *.md      text
+*.txt     text
+*.markdown text
 
-
+# Never normalized
 *.js      -text
 *.css     -text
 *.ts      -text
 *.less    -text
 *.nuspec  -text
 
+# Custom for Visual Studio
+*.cs     diff=csharp
+*.sln    merge=union
+*.csproj merge=union
+*.vbproj merge=union
+*.fsproj merge=union
+*.dbproj merge=union
+
+# Standard to msysgit
+*.doc  diff=astextplain
+*.DOC  diff=astextplain
+*.docx diff=astextplain
+*.DOCX diff=astextplain
+*.dot  diff=astextplain
+*.DOT  diff=astextplain
+*.pdf  diff=astextplain
+*.PDF  diff=astextplain
+*.rtf  diff=astextplain
+*.RTF  diff=astextplain
+
 # Images should be treated as binary
 # (binary is a macro for -text -diff)
 *.png     binary
 *.jepg    binary
 *.sdf     binary
-
-
