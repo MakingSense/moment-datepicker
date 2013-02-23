@@ -65,11 +65,15 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\d.ts\bootstrap\bootstrap.d.ts" />
+    <Content Include="Scripts\d.ts\jquery\jquery.d.ts" />
+    <Content Include="Scripts\d.ts\knockout\knockout.d.ts" />
+    <Content Include="Scripts\d.ts\moment\moment.d.ts" />
+    <Content Include="Scripts\d.ts\underscore\underscore.d.ts" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
-    <Content Include="Scripts\moment.d.ts" />
     <Content Include="Scripts\moment.i18n\bg.js" />
     <Content Include="Scripts\moment.i18n\ca.js" />
     <Content Include="Scripts\moment.i18n\cv.js" />
@@ -132,11 +136,8 @@
     <Content Include="web.config" />
     <Content Include="README.md" />
     <Content Include="Scripts\moment.i18n\es.js" />
-    <Content Include="Scripts\underscore.browser.d.ts" />
-    <Content Include="Scripts\Knockout.d.ts" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
-    <None Include="Scripts\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
