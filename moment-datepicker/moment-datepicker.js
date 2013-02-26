@@ -60,8 +60,8 @@
                 keyup: $.proxy(function (e) {
                     if (e.keyCode == 13)
                         this.updateFromValue();
-                }, this),
-                click: $.proxy(this.show, this)
+                }, this)
+                // click: $.proxy(this.show, this) //fixed duplicated show event
             });
         } else {
             if (this.component) {
