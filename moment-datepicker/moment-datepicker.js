@@ -25,6 +25,7 @@
         this.element = $(element);
         this.autoHide = true && (options.autoHide !== false) && (this.element.data('datepicker-autohide') !== false);
         this.format = options.format || this.element.data('datepicker-format') || moment.langData().longDateFormat('L');
+        this.calendarPlacement = options.calendarPlacement || this.element.data('datepicker-calendarplacement') || 'right';
         this.picker = $(DPGlobal.template)
 							.appendTo('body')
 							.on({
@@ -90,6 +91,7 @@
         this.weekEnd = this.weekStart === 0 ? 6 : this.weekStart - 1;
         this.fillDow();
         this.fillMonths();
+        this.setCustomClasses();
         this.updateFromValue();
         this.showMode();
         this.refresh();
@@ -153,11 +155,20 @@
         },
 
         place: function () {
-            var offset = this.component ? this.component.offset() : this.element.offset();
-            this.picker.css({
-                top: offset.top + this.height,
-                left: offset.left
-            });
+            var sourceItem = this.component ? this.component : this.element;
+            var offset = sourceItem.offset();
+            
+            if (this.calendarPlacement == 'left') {
+                this.picker.css({
+                    top: offset.top + this.height,
+                    left: offset.left + sourceItem[0].offsetWidth - this.picker[0].offsetWidth
+                });
+            } else {
+                this.picker.css({
+                    top: offset.top + this.height,
+                    left: offset.left
+                });
+            }
         },
         lastValue: null,
         triggerChangeDate: function () {
@@ -348,6 +359,11 @@
                 this.viewMode = Math.max(this.minViewMode, Math.min(2, this.viewMode + dir));
             }
             this.picker.find('>div').hide().filter('.datepicker-' + DPGlobal.modes[this.viewMode].clsName).show();
+        },
+        setCustomClasses: function() {
+            if (this.calendarPlacement == 'left') {
+                this.picker.addClass('datepicker-left');
+            }
         }
     };
 

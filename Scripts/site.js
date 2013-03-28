@@ -15,6 +15,7 @@ $(function () {
     $('#dp2').datepicker();
     $('#dp3').datepicker();
     $('#dp3').datepicker();
+    $('#dp6').datepicker();
     $('#dpYears').datepicker();
     $('#dpMonths').datepicker();
     var startDate = moment([
