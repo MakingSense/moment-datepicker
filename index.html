@@ -66,6 +66,11 @@
                     <input type="text" class="span2" data-bind="datepicker: birthdayFormat, datepickerOptions: { dataType: 'format', format: 'D/M/YY' }">
                     <input type="text" class="span2" data-bind="value: birthdayFormat">
                 </div>
+                <p>Using KnockOut.js Start and End date binding.</p>
+                <div class="well">
+                    <input type="text" class="span2" data-bind="datepicker: birthdayThisYearMoment, datepickerOptions: { format: 'YYYY-MM-DD', startDate: '2013-01-01', endDate: '2013-12-31' }">
+                    <input type="text" class="span2" data-bind="value: birthdayThisYearMoment">
+                </div>
                 <p>Using KnockOut.js Date binding.</p>
                 <div class="well">
                     <input type="text" class="span2" data-bind="datepicker: birthdayDate, datepickerOptions: { format: 'D/M/YY' }">
