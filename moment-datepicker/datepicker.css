@@ -27,11 +27,11 @@
 .datepicker.datepicker-rtl table tr td span {
   float: right;
 }
-.datepicker-dropdown {
+.datepicker.dropdown-menu {
   top: 0;
   left: 0;
 }
-.datepicker-dropdown:before {
+.datepicker.dropdown-menu:before {
   content: '';
   display: inline-block;
   border-left: 7px solid transparent;
@@ -42,7 +42,7 @@
   top: -7px;
   left: 6px;
 }
-.datepicker-dropdown:after {
+.datepicker.dropdown-menu:after {
   content: '';
   display: inline-block;
   border-left: 6px solid transparent;
@@ -299,12 +299,12 @@
   width: 16px;
   height: 16px;
 }
-.datepicker-left.datepicker:before
+.datepicker-left.datepicker.dropdown-menu:before
 {
     left: auto;
     right: 6px;
 }
-.datepicker-left.datepicker:after {
+.datepicker-left.datepicker.dropdown-menu:after {
     left: auto;
     right: 7px;
 }
