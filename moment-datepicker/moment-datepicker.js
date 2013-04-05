@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================================================= */
 
-!function ($, moment) {
+!function ($, moment, undefined) {
 
     // Picker object
 
