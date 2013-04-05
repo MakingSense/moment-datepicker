@@ -5,7 +5,8 @@ $(function () {
         birthdayIso: ko.observable('1978-12-02'),
         birthdayFormat: ko.observable('2/12/78'),
         birthdayDate: ko.observable(new Date('1978-12-02T00:00:00')),
-        birthdayMoment: ko.observable(moment('1978-12-02T00:00:00'))
+        birthdayMoment: ko.observable(moment('1978-12-02T00:00:00')),
+        birthdayThisYearMoment: ko.observable(moment('2013-12-02T00:00:00'))
     };
     ko.applyBindings(model);
     $('#dp1').datepicker({
@@ -15,6 +16,7 @@ $(function () {
     $('#dp2').datepicker();
     $('#dp3').datepicker();
     $('#dp3').datepicker();
+    $('#dp6').datepicker();
     $('#dpYears').datepicker();
     $('#dpMonths').datepicker();
     var startDate = moment([

@@ -25,12 +25,17 @@
         this.element = $(element);
         this.autoHide = true && (options.autoHide !== false) && (this.element.data('datepicker-autohide') !== false);
         this.format = options.format || this.element.data('datepicker-format') || moment.langData().longDateFormat('L');
+        this.calendarPlacement = options.calendarPlacement || this.element.data('datepicker-calendarplacement') || 'right';
         this.picker = $(DPGlobal.template)
 							.appendTo('body')
 							.on({
 							    click: $.proxy(this.click, this),
 							    mousedown: $.proxy(this.mousedown, this)
 							});
+        var startDateText = options.startDate || this.element.data('datepicker-startdate') || undefined;
+        this.startDate = (startDateText) ? DPGlobal.parseDate(startDateText, this.format) : undefined;
+        var endDateText = options.endDate || this.element.data('datepicker-enddate') || undefined;
+        this.endDate = (endDateText) ? DPGlobal.parseDate(endDateText, this.format) : undefined;
         this.isInput = this.element.is('input');
         this.component = !this.isInput && this.element.is('.date') ? this.element.find('.add-on') : false;
 
@@ -90,6 +95,7 @@
         this.weekEnd = this.weekStart === 0 ? 6 : this.weekStart - 1;
         this.fillDow();
         this.fillMonths();
+        this.setCustomClasses();
         this.updateFromValue();
         this.showMode();
         this.refresh();
@@ -153,11 +159,20 @@
         },
 
         place: function () {
-            var offset = this.component ? this.component.offset() : this.element.offset();
-            this.picker.css({
-                top: offset.top + this.height,
-                left: offset.left
-            });
+            var sourceItem = this.component ? this.component : this.element;
+            var offset = sourceItem.offset();
+            
+            if (this.calendarPlacement == 'left') {
+                this.picker.css({
+                    top: offset.top + this.height,
+                    left: offset.left + sourceItem[0].offsetWidth - this.picker[0].offsetWidth
+                });
+            } else {
+                this.picker.css({
+                    top: offset.top + this.height,
+                    left: offset.left
+                });
+            }
         },
         lastValue: null,
         triggerChangeDate: function () {
@@ -249,6 +264,9 @@
                 if (prevMonth.valueOf() === currentDate) {
                     clsName += ' active';
                 }
+                if (prevMonth.valueOf() < this.startDate || prevMonth.valueOf() > this.endDate) {
+                    clsName += ' disabled';
+                }
                 html.push('<td class="day' + clsName + '">' + prevMonth.date() + '</td>');
                 if (prevMonth.day() === this.weekEnd) {
                     html.push('</tr>');
@@ -261,9 +279,18 @@
 						.find('th:eq(1)')
 							.text(year)
 							.end()
-						.find('span').removeClass('active');
+						.find('span').removeClass('active').removeClass('disabled');
             if (currentYear === year) {
                 months.eq(currentMonth).addClass('active');
+            }
+            if (((this.startDate) && year < this.startDate.year()) || ((this.endDate) && year > this.endDate.year())) {
+                months.addClass('disabled');
+            }
+            if ((this.startDate) && year == this.startDate.year()) {
+                months.slice(0, this.startDate.month()).addClass('disabled');
+            }
+            if ((this.endDate) && year == this.endDate.year()) {
+                months.slice(this.endDate.month() + 1).addClass('disabled');
             }
 
             html = '';
@@ -275,7 +302,7 @@
 								.find('td');
             year -= 1;
             for (var i = -1; i < 11; i++) {
-                html += '<span class="year' + (i === -1 || i === 10 ? ' old' : '') + (currentYear === year ? ' active' : '') + '">' + year + '</span>';
+                html += '<span class="year' + (i === -1 || i === 10 ? ' old' : '') + (currentYear === year ? ' active' : '') + (((this.startDate) && year < this.startDate.year()) || ((this.endDate) && year > this.endDate.year()) ? ' disabled' : '') + '">' + year + '</span>';
                 year += 1;
             }
             yearCont.html(html);
@@ -302,40 +329,48 @@
                         }
                         break;
                     case 'span':
-                        if (target.is('.month')) {
+                        if (!target.is('.disabled')) {
+                            if (target.is('.month')) {
 
-                            var newMonth = target.parent().find('span').index(target);
-                            //this.viewDate.month(newMonth); I do not like how it works when the new month have less days
-                            this.viewDate.add('months', newMonth - this.viewDate.month());
+                                var newMonth = target.parent().find('span').index(target);
+                                //this.viewDate.month(newMonth); I do not like how it works when the new month have less days
+                                this.viewDate.add('months', newMonth - this.viewDate.month());
 
-                        } else {
-                            var year = parseInt(target.text(), 10) || 0;
-                            this.viewDate.year(year);
+                            } else {
+                                var year = parseInt(target.text(), 10) || 0;
+                                this.viewDate.year(year);
+                            }
+
+                            if (this.viewMode !== this.minViewMode) {
+                                this.showMode(-1);
+                                this.set(this.viewDate, true);
+                            } else {
+                                this.set(this.viewDate);
+                            }
                         }
-
-                        if (this.viewMode !== this.minViewMode) {
-                            this.showMode(-1);
-                            this.set(this.viewDate, true);
-                        } else {
-                            this.set(this.viewDate);
-                        }
-
                         break;
                     case 'td':
-                        if (target.is('.day')) {
-                            var day = parseInt(target.text(), 10) || 1;
-                            var month = this.viewDate.month();
-                            if (target.is('.old')) {
-                                month -= 1;
-                            } else if (target.is('.new')) {
-                                month += 1;
+                        if (!target.is('.disabled')) {
+                            if (target.is('.day')) {
+                                var day = parseInt(target.text(), 10) || 1;
+                                var tempDate = this.viewDate.clone();
+                                if (target.is('.old')) {
+                                    tempDate.startOf('month').add('days', -1);
+                                } else if (target.is('.new')) {
+                                    tempDate.endOf('month').add('days', 1);
+                                }
+                                var month = tempDate.month();
+                                var year = tempDate.year();
+                                this.set(moment([year, month, day]));
                             }
-                            var year = this.viewDate.year();
-                            this.set(moment([year, month, day]));
                         }
                         break;
                 }
             }
+        },
+
+        dateWithinRange: function (date) {
+            return date >= this.startDate && date <= this.endDate;
         },
 
         mousedown: function (e) {
@@ -348,6 +383,11 @@
                 this.viewMode = Math.max(this.minViewMode, Math.min(2, this.viewMode + dir));
             }
             this.picker.find('>div').hide().filter('.datepicker-' + DPGlobal.modes[this.viewMode].clsName).show();
+        },
+        setCustomClasses: function() {
+            if (this.calendarPlacement == 'left') {
+                this.picker.addClass('datepicker-left');
+            }
         }
     };
 
