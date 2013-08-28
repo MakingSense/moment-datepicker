@@ -1,0 +1,21 @@
+{
+  "name": "moment-datepicker",
+  "version": "1.0.0",
+  "main": ["./moment-datepicker/moment-datepicker.js", "./moment-datepicker/datepicker.css"],
+  "ignore": [
+    ".gitignore",
+    "Content",
+    "index.html",
+    "MomentDatepicker.csproj",
+    "MomentDatepicker.sln",
+    "nuget",
+    "packages",
+    "packages.config",
+    "Scripts",
+    "web.config"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.0",
+    "moment": ">= 2.0.0"
+  }
+}
