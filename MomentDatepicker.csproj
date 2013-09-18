@@ -69,6 +69,9 @@
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
+    <Content Include="Scripts\underscore.min.map" />
     <TypeScriptCompile Include="Scripts\site.ts" />
     <Content Include="moment-datepicker\moment-datepicker.min.js">
       <DependentUpon>moment-datepicker.js</DependentUpon>
@@ -146,8 +149,6 @@
     <Content Include="Scripts\site.min.js">
       <DependentUpon>site.ts</DependentUpon>
     </Content>
-    <Content Include="Scripts\underscore.js" />
-    <Content Include="Scripts\underscore.min.js" />
     <Content Include="web.config" />
     <Content Include="README.md" />
     <Content Include="Scripts\moment.i18n\es.js" />
