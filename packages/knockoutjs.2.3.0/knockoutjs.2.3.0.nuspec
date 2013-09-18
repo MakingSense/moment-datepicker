@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>knockoutjs</id>
-    <version>2.2.1</version>
+    <version>2.3.0</version>
     <authors>Steven Sanderson</authors>
     <owners>Steven Sanderson</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -12,6 +12,5 @@
     <description>A JavaScript MVVM library to help you create rich, dynamic user interfaces with clean maintainable code</description>
     <language>en-US</language>
     <tags>knockout mvvm</tags>
-    <references />
   </metadata>
 </package>
