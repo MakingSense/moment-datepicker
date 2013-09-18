@@ -118,11 +118,6 @@
     <Content Include="moment-datepicker\moment-datepicker.min.js.map">
       <DependentUpon>moment-datepicker.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\d.ts\bootstrap\bootstrap.d.ts" />
-    <Content Include="Scripts\d.ts\jquery\jquery.d.ts" />
-    <Content Include="Scripts\d.ts\knockout\knockout.d.ts" />
-    <Content Include="Scripts\d.ts\moment\moment.d.ts" />
-    <Content Include="Scripts\d.ts\underscore\underscore.d.ts" />
     <Content Include="Scripts\knockout-2.3.0.debug.js" />
     <Content Include="Scripts\knockout-2.3.0.js" />
     <Content Include="Scripts\moment.i18n\bg.js" />
