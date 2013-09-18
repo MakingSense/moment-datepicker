@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>jQuery</id>
-    <version>1.9.1</version>
+    <version>2.0.3</version>
     <title>jQuery</title>
     <authors>jQuery Foundation,  Inc.</authors>
     <owners>jQuery Foundation,  Inc.</owners>
@@ -14,6 +14,5 @@
         NOTE: This package is maintained on behalf of the library owners by the NuGet Community Packages project at http://nugetpackages.codeplex.com/</description>
     <language>en-US</language>
     <tags>jQuery</tags>
-    <references />
   </metadata>
 </package>

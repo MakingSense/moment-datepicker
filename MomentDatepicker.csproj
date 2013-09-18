@@ -61,6 +61,10 @@
     <Content Include="moment-datepicker\moment-datepicker.js" />
     <Content Include="moment-datepicker\datepicker.css" />
     <Content Include="index.html" />
+    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.0.3.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.map" />
     <TypeScriptCompile Include="Scripts\site.ts" />
     <Content Include="moment-datepicker\moment-datepicker.min.js">
       <DependentUpon>moment-datepicker.js</DependentUpon>
@@ -73,14 +77,11 @@
     <Content Include="moment-datepicker\moment-datepicker.min.js.map">
       <DependentUpon>moment-datepicker.js</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\d.ts\bootstrap\bootstrap.d.ts" />
     <Content Include="Scripts\d.ts\jquery\jquery.d.ts" />
     <Content Include="Scripts\d.ts\knockout\knockout.d.ts" />
     <Content Include="Scripts\d.ts\moment\moment.d.ts" />
     <Content Include="Scripts\d.ts\underscore\underscore.d.ts" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\moment.i18n\bg.js" />
@@ -151,7 +152,6 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
