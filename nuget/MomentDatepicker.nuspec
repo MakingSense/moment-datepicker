@@ -2,27 +2,27 @@
 <package >
   <metadata>
     <id>MomentDatepicker</id>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <authors>andresmoschini</authors>
     <owners>andresmoschini</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>http://makingsense.github.com/moment-datepicker/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A JavaScript Datepicker that takes advantage of twitter-bootstrap and moment.js. Ready for TypeScript and Knockout</description>
-    <releaseNotes>Update dependencies</releaseNotes>
+    <releaseNotes>Remove dependencies restrictions</releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>Datepicker Bootstrap Moment jQuery Knockout TypeScript</tags>
     <dependencies>
-      <dependency id="jQuery" version="[1.7.0,2.0.0)"/>
-      <dependency id="Twitter.Bootstrap" version="[2.0.0,3.0.0)"/>
-      <dependency id="Moment.js" version="[2.0.0,3.0.0)"/>
+      <dependency id="jQuery"/>
+      <dependency id="Twitter.Bootstrap"/>
+      <dependency id="Moment.js"/>
     </dependencies>
   </metadata>
   <files>
-    <file src="..\moment-datepicker\moment-datepicker.js" target="content\Scripts\moment-datepicker.js" />
-    <file src="..\moment-datepicker\moment-datepicker.min.js" target="content\Scripts\moment-datepicker.min.js" />
-    <file src="..\moment-datepicker\moment-datepicker-ko.js" target="content\Scripts\moment-datepicker-ko.js" />
-    <file src="..\moment-datepicker\moment-datepicker.d.ts" target="content\Scripts\moment-datepicker.d.ts" />
-    <file src="..\moment-datepicker\datepicker.css" target="content\Content\moment-datepicker\datepicker.css" />
+    <file src="../moment-datepicker/moment-datepicker.js" target="content/Scripts/moment-datepicker.js" />
+    <file src="../moment-datepicker/moment-datepicker.min.js" target="content/Scripts/moment-datepicker.min.js" />
+    <file src="../moment-datepicker/moment-datepicker-ko.js" target="content/Scripts/moment-datepicker-ko.js" />
+    <file src="../moment-datepicker/moment-datepicker.d.ts" target="content/Scripts/moment-datepicker.d.ts" />
+    <file src="../moment-datepicker/datepicker.css" target="content/Content/moment-datepicker/datepicker.css" />
   </files>
 </package>
