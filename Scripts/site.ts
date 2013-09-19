@@ -6,7 +6,7 @@
 /// <reference path="../moment-datepicker/moment-datepicker.d.ts" />
 
 
-interface Window extends ViewCSS, MSEventAttachmentTarget, MSWindowExtensions, WindowPerformance, ScreenView, EventTarget, WindowLocalStorage, WindowSessionStorage, WindowTimers {
+interface Window extends /*ViewCSS, */MSEventAttachmentTarget, MSWindowExtensions, /*WindowPerformance, ScreenView, */EventTarget, WindowLocalStorage, WindowSessionStorage, WindowTimers {
     prettyPrint: () => void;
 }
 
