@@ -27,7 +27,7 @@
         this.format = options.format || this.element.data('datepicker-format') || moment.langData().longDateFormat('L');
         this.calendarPlacement = options.calendarPlacement || this.element.data('datepicker-calendarplacement') || 'right';
         this.picker = $(DPGlobal.template)
-							.appendTo('body')
+							.appendTo(options.container)
 							.on({
 							    click: $.proxy(this.click, this),
 							    mousedown: $.proxy(this.mousedown, this)
@@ -413,6 +413,7 @@
     };
 
     $.fn.datepicker.defaults = {
+    	container : 'body'
     };
     $.fn.datepicker.Constructor = Datepicker;
 
