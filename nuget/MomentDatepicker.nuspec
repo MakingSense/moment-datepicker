@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>MomentDatepicker</id>
-    <version>1.1.1</version>
+    <version>1.1.3</version>
     <authors>andresmoschini</authors>
     <owners>andresmoschini</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>http://makingsense.github.com/moment-datepicker/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A JavaScript Datepicker that takes advantage of twitter-bootstrap and moment.js. Ready for TypeScript and Knockout</description>
-    <releaseNotes>Remove dependencies restrictions</releaseNotes>
+    <releaseNotes>Remove dependencies restriction and fix nuspec file</releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>Datepicker Bootstrap Moment jQuery Knockout TypeScript</tags>
     <dependencies>
@@ -19,10 +19,10 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="../moment-datepicker/moment-datepicker.js" target="content/Scripts/moment-datepicker.js" />
-    <file src="../moment-datepicker/moment-datepicker.min.js" target="content/Scripts/moment-datepicker.min.js" />
-    <file src="../moment-datepicker/moment-datepicker-ko.js" target="content/Scripts/moment-datepicker-ko.js" />
-    <file src="../moment-datepicker/moment-datepicker.d.ts" target="content/Scripts/moment-datepicker.d.ts" />
-    <file src="../moment-datepicker/datepicker.css" target="content/Content/moment-datepicker/datepicker.css" />
+    <file src="..\moment-datepicker\moment-datepicker.js" target="content\Scripts\moment-datepicker.js" />
+    <file src="..\moment-datepicker\moment-datepicker.min.js" target="content\Scripts\moment-datepicker.min.js" />
+    <file src="..\moment-datepicker\moment-datepicker-ko.js" target="content\Scripts\moment-datepicker-ko.js" />
+    <file src="..\moment-datepicker\moment-datepicker.d.ts" target="content\Scripts\moment-datepicker.d.ts" />
+    <file src="..\moment-datepicker\datepicker.css" target="content\Content\moment-datepicker\datepicker.css" />
   </files>
 </package>

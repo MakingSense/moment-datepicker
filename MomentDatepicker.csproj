@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -20,6 +21,12 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,21 +47,71 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="Content\bootstrap-responsive.css" />
-    <Content Include="Content\bootstrap-responsive.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\images\glyphicons-halflings-white.png" />
-    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\bootstrap\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap\bootstrap.css" />
+    <Content Include="Content\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Prettify\prettify.css" />
     <Content Include="Content\Prettify\Themes\bootstrap.css" />
     <Content Include="Content\Prettify\Themes\desert.css" />
+    <Content Include="Content\Prettify\Themes\doxy.css" />
     <Content Include="Content\Prettify\Themes\sons-of-obsidian.css" />
     <Content Include="Content\Prettify\Themes\sunburst.css" />
     <Content Include="moment-datepicker\moment-datepicker-ko.js" />
     <Content Include="moment-datepicker\moment-datepicker.js" />
     <Content Include="moment-datepicker\datepicker.css" />
     <Content Include="index.html" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bower.json" />
+    <Content Include=".gitattributes" />
+    <Content Include="nuget\pack.sh" />
+    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-2.0.3.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.map" />
+    <Content Include="Scripts\moment+langs.js" />
+    <Content Include="Scripts\moment+langs.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\Prettify\lang-apollo.js" />
+    <Content Include="Scripts\Prettify\lang-basic.js" />
+    <Content Include="Scripts\Prettify\lang-clj.js" />
+    <Content Include="Scripts\Prettify\lang-css.js" />
+    <Content Include="Scripts\Prettify\lang-dart.js" />
+    <Content Include="Scripts\Prettify\lang-erlang.js" />
+    <Content Include="Scripts\Prettify\lang-go.js" />
+    <Content Include="Scripts\Prettify\lang-hs.js" />
+    <Content Include="Scripts\Prettify\lang-lisp.js" />
+    <Content Include="Scripts\Prettify\lang-llvm.js" />
+    <Content Include="Scripts\Prettify\lang-lua.js" />
+    <Content Include="Scripts\Prettify\lang-matlab.js" />
+    <Content Include="Scripts\Prettify\lang-ml.js" />
+    <Content Include="Scripts\Prettify\lang-mumps.js" />
+    <Content Include="Scripts\Prettify\lang-n.js" />
+    <Content Include="Scripts\Prettify\lang-pascal.js" />
+    <Content Include="Scripts\Prettify\lang-proto.js" />
+    <Content Include="Scripts\Prettify\lang-r.js" />
+    <Content Include="Scripts\Prettify\lang-rd.js" />
+    <Content Include="Scripts\Prettify\lang-scala.js" />
+    <Content Include="Scripts\Prettify\lang-sql.js" />
+    <Content Include="Scripts\Prettify\lang-tcl.js" />
+    <Content Include="Scripts\Prettify\lang-tex.js" />
+    <Content Include="Scripts\Prettify\lang-vb.js" />
+    <Content Include="Scripts\Prettify\lang-vhdl.js" />
+    <Content Include="Scripts\Prettify\lang-wiki.js" />
+    <Content Include="Scripts\Prettify\lang-xq.js" />
+    <Content Include="Scripts\Prettify\lang-yaml.js" />
+    <Content Include="Scripts\Prettify\prettify.js" />
+    <Content Include="Scripts\Prettify\run_prettify.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
+    <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Scripts\site.js.map" />
     <TypeScriptCompile Include="Scripts\site.ts" />
     <Content Include="moment-datepicker\moment-datepicker.min.js">
       <DependentUpon>moment-datepicker.js</DependentUpon>
@@ -62,21 +119,11 @@
     <Content Include="nuget\MomentDatepicker.nuspec" />
     <Content Include="nuget\pack.cmd" />
     <Content Include="moment-datepicker\moment-datepicker.d.ts" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="moment-datepicker\moment-datepicker.min.js.map">
       <DependentUpon>moment-datepicker.js</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="Scripts\d.ts\bootstrap\bootstrap.d.ts" />
-    <Content Include="Scripts\d.ts\jquery\jquery.d.ts" />
-    <Content Include="Scripts\d.ts\knockout\knockout.d.ts" />
-    <Content Include="Scripts\d.ts\moment\moment.d.ts" />
-    <Content Include="Scripts\d.ts\underscore\underscore.d.ts" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
-    <Content Include="Scripts\knockout-2.2.1.debug.js" />
-    <Content Include="Scripts\knockout-2.2.1.js" />
+    <Content Include="Scripts\knockout-2.3.0.debug.js" />
+    <Content Include="Scripts\knockout-2.3.0.js" />
     <Content Include="Scripts\moment.i18n\bg.js" />
     <Content Include="Scripts\moment.i18n\ca.js" />
     <Content Include="Scripts\moment.i18n\cv.js" />
@@ -110,42 +157,24 @@
     <Content Include="Scripts\moment.i18n\tr.js" />
     <Content Include="Scripts\moment.i18n\zh-cn.js" />
     <Content Include="Scripts\moment.i18n\zh-tw.js" />
-    <Content Include="Scripts\moment.js" />
-    <Content Include="Scripts\moment.min.js" />
-    <Content Include="Scripts\Prettify\lang-apollo.js" />
-    <Content Include="Scripts\Prettify\lang-clj.js" />
-    <Content Include="Scripts\Prettify\lang-css.js" />
-    <Content Include="Scripts\Prettify\lang-go.js" />
-    <Content Include="Scripts\Prettify\lang-hs.js" />
-    <Content Include="Scripts\Prettify\lang-lisp.js" />
-    <Content Include="Scripts\Prettify\lang-lua.js" />
-    <Content Include="Scripts\Prettify\lang-ml.js" />
-    <Content Include="Scripts\Prettify\lang-n.js" />
-    <Content Include="Scripts\Prettify\lang-proto.js" />
-    <Content Include="Scripts\Prettify\lang-scala.js" />
-    <Content Include="Scripts\Prettify\lang-sql.js" />
-    <Content Include="Scripts\Prettify\lang-tex.js" />
-    <Content Include="Scripts\Prettify\lang-vb.js" />
-    <Content Include="Scripts\Prettify\lang-vhdl.js" />
-    <Content Include="Scripts\Prettify\lang-wiki.js" />
-    <Content Include="Scripts\Prettify\lang-xq.js" />
-    <Content Include="Scripts\Prettify\lang-yaml.js" />
-    <Content Include="Scripts\Prettify\prettify.js" />
     <Content Include="Scripts\site.js">
       <DependentUpon>site.ts</DependentUpon>
     </Content>
     <Content Include="Scripts\site.min.js">
       <DependentUpon>site.ts</DependentUpon>
     </Content>
-    <Content Include="Scripts\underscore.js" />
-    <Content Include="Scripts\underscore.min.js" />
     <Content Include="web.config" />
     <Content Include="README.md" />
     <Content Include="Scripts\moment.i18n\es.js" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\knockout\knockout.amd.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\knockout\knockout.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\moment\moment.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
@@ -155,6 +184,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="BeforeBuild">
