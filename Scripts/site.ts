@@ -1,12 +1,12 @@
-/// <reference path="d.ts/underscore/underscore.d.ts" />
-/// <reference path="d.ts/moment/moment.d.ts" />
-/// <reference path="d.ts/knockout/knockout.d.ts" />
-/// <reference path="d.ts/jquery/jquery.d.ts" />
-/// <reference path="d.ts/bootstrap/bootstrap.d.ts" />
+/// <reference path="typings/underscore/underscore.d.ts" />
+/// <reference path="typings/moment/moment.d.ts" />
+/// <reference path="typings/knockout/knockout.d.ts" />
+/// <reference path="typings/jquery/jquery.d.ts" />
+/// <reference path="typings/bootstrap/bootstrap.d.ts" />
 /// <reference path="../moment-datepicker/moment-datepicker.d.ts" />
 
 
-interface Window extends ViewCSS, MSEventAttachmentTarget, MSWindowExtensions, WindowPerformance, ScreenView, EventTarget, WindowLocalStorage, WindowSessionStorage, WindowTimers {
+interface Window extends /*ViewCSS, */MSEventAttachmentTarget, MSWindowExtensions, /*WindowPerformance, ScreenView, */EventTarget, WindowLocalStorage, WindowSessionStorage, WindowTimers {
     prettyPrint: () => void;
 }
 
