@@ -30,6 +30,7 @@
 .datepicker.dropdown-menu {
   top: 0;
   left: 0;
+  z-index: 1100
 }
 .datepicker.dropdown-menu:before {
   content: '';
