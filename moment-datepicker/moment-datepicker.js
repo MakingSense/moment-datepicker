@@ -229,7 +229,7 @@
             var i = 0
             var monthsShort = $.proxy(moment.langData().monthsShort, moment.langData());
             while (i < 12) {
-                html += '<span class="month">' + monthsShort(moment().month(i++)) + '</span>';
+            	html += '<span class="month">' + monthsShort(moment().startOf('month').month(i++)) + '</span>';
             }
             this.picker.find('.datepicker-months td').append(html);
         },
