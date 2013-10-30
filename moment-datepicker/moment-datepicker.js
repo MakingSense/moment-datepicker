@@ -243,7 +243,7 @@
             var currentMonth = currentMoment ? currentMoment.month() : null;
 
             this.picker.find('.datepicker-days th:eq(1)')
-						.text(moment.langData().months(moment().month(month)) + ' ' + year);
+						.text(moment.langData().months(moment().startOf('month').month(month)) + ' ' + year);
 
             var prevMonth = moment([year, month, 0]);
             prevMonth.day(prevMonth.day() - (prevMonth.day() - this.weekStart + 7) % 7);
