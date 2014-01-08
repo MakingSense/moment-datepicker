@@ -493,7 +493,7 @@
       momentDatepicker($, moment);
     })
   } else {
-    moment(window.$, window.moment)
+    momentDatepicker(window.$, window.moment)
   }
 
 }(window);
