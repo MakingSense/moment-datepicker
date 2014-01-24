@@ -97,6 +97,7 @@
       this.startViewMode = this.viewMode;
       this.weekStart = options.weekStart || this.element.data('datepicker-weekstart') || 0;
       this.weekEnd = this.weekStart === 0 ? 6 : this.weekStart - 1;
+      this.highlighedDates = options.highlight || [];
       this.fillDow();
       this.fillMonths();
       this.setCustomClasses();
@@ -236,6 +237,11 @@
         this.picker.find('.datepicker-months td').append(html);
       },
 
+      highlight: function (dates) {
+        this.highlighedDates = dates;
+        this.fill();
+      },
+
       fill: function () {
         var year = this.viewDate.year();
         var month = this.viewDate.month();
@@ -273,6 +279,13 @@
           if (prevMonth.valueOf() < this.startDate || prevMonth.valueOf() > this.endDate) {
             clsName += ' disabled';
           }
+
+          if (this.highlighedDates.indexOf(prevMonth.format('YYYY-MM-DD')) != -1) {
+              clsName += ' highlighted';
+          } else {
+              clsName += ' disabled';
+          }
+
           html.push('<td class="day' + clsName + '">' + prevMonth.date() + '</td>');
           if (prevMonth.day() === this.weekEnd) {
             html.push('</tr>');
