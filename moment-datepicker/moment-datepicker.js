@@ -507,4 +507,4 @@
 							'</div>' +
 						'</div>';
 
-}(this.jQuery, this.moment)
+}(this.jQuery, this.moment);
