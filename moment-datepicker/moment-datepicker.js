@@ -1,6 +1,6 @@
 /* =========================================================
  * MomentDatepicker 
- * Based on http://www.eyecon.ro/bootstrap-datepicker
+ * Based on http://makingsense.github.io/moment-datepicker/
  * =========================================================
  * Copyright 2012 Andres Moschini 
  *
@@ -14,16 +14,17 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License.
+ * limitations under the License
  * ========================================================= */
 
-!function ($, moment, undefined) {
+!function($, moment, undefined) {
 
     // Picker object
 
-    var Datepicker = function (element, options) {
+    var Datepicker = function(element, options) {
         this.element = $(element);
         this.autoHide = true && (options.autoHide !== false) && (this.element.data('datepicker-autohide') !== false);
+        this.onRender = options.onRender;
         this.format = options.format || this.element.data('datepicker-format') || moment.langData().longDateFormat('L');
         this.calendarPlacement = options.calendarPlacement || this.element.data('datepicker-calendarplacement') || 'right';
         this.picker = $(DPGlobal.template)
@@ -42,14 +43,14 @@
         if (this.isInput) {
             this.element.on({
                 focus: $.proxy(this.show, this),
-                blur: $.proxy(function (e) {
+                blur: $.proxy(function(e) {
                     this._hide();
                     this.triggerChangeDate();
                 }, this),
-                input: $.proxy(function (e) {
+                input: $.proxy(function(e) {
                     this.updateFromValue(true);
                 }, this),
-                keyup: $.proxy(function (e) {
+                keyup: $.proxy(function(e) {
                     if (e.keyCode == 13)
                         this.updateFromValue();
                 }, this),
@@ -103,18 +104,18 @@
 
     Datepicker.prototype = {
         constructor: Datepicker,
-        get: function () {
+        get: function() {
             return (this.moment && this.moment.clone());
         },
-        getAsText: function (format) {
+        getAsText: function(format) {
             return (this.moment && this.moment.format(format || this.format)) || '';
         },
-        show: function (e) {
-	        
-        	if (this.isInput && this.element.is(':disabled')) { return; }
+        show: function(e) {
 
-        	else if (this.element.children('input').is(':disabled')) { return; }
-	        
+            if (this.isInput && this.element.is(':disabled')) { return; }
+
+            else if (this.element.children('input').is(':disabled')) { return; }
+
             this.picker.show();
             this.height = (this.component && this.component.outerHeight()) || this.element.outerHeight();
             this.place();
@@ -131,7 +132,7 @@
             });
         },
 
-        _hide: function (e) {
+        _hide: function(e) {
             // When going from the input to the picker, IE handles the blur/click
             // events differently than other browsers, in such a way that the blur
             // event triggers a hide before the click event can stop propagation.
@@ -155,8 +156,8 @@
                 return this.hide.apply(this, arguments);
             }
         },
-        
-        hide: function () {
+
+        hide: function() {
             this.picker.hide();
             $(window).off('resize', this.place);
             this.viewMode = this.startViewMode;
@@ -170,7 +171,7 @@
             });
         },
 
-        refresh: function () {
+        refresh: function() {
             var formated = this.getAsText();
 
             if (!this.isInput) {
@@ -183,15 +184,15 @@
             }
         },
 
-        set: function (newDate, ommitEvent) {
+        set: function(newDate, ommitEvent) {
             this.update(newDate, ommitEvent);
             this.refresh();
         },
 
-        place: function () {
+        place: function() {
             var sourceItem = this.component ? this.component : this.element;
             var offset = sourceItem.offset();
-            
+
             if (this.calendarPlacement == 'left') {
                 this.picker.css({
                     top: offset.top + this.height,
@@ -205,7 +206,7 @@
             }
         },
         lastValue: null,
-        triggerChangeDate: function () {
+        triggerChangeDate: function() {
             var newValue = this.moment ? this.moment.valueOf() : null;
             if (newValue != this.lastValue) {
                 this.lastValue = newValue;
@@ -216,11 +217,11 @@
             if (this.autoHide)
                 this.hide();
         },
-        updateFromValue: function (ommitEvent) {
+        updateFromValue: function(ommitEvent) {
             this.update(this.isInput ? this.element.prop('value') : this.element.data('date'), ommitEvent);
         },
 
-        update: function (newDate, ommitEvent) {
+        update: function(newDate, ommitEvent) {
             var originalValue = this.moment ? this.moment.valueOf() : null;
 
             this.moment = DPGlobal.parseDate(newDate, this.format);
@@ -238,7 +239,7 @@
                 this.triggerChangeDate();
         },
 
-        fillDow: function () {
+        fillDow: function() {
             var dowCnt = this.weekStart;
             var html = '<tr>';
             var daysMin = $.proxy(moment.langData().weekdaysMin, moment.langData());
@@ -249,17 +250,17 @@
             this.picker.find('.datepicker-days thead').append(html);
         },
 
-        fillMonths: function () {
+        fillMonths: function() {
             var html = '';
             var i = 0
             var monthsShort = $.proxy(moment.langData().monthsShort, moment.langData());
             while (i < 12) {
-            	html += '<span class="month">' + monthsShort(moment().startOf('month').month(i++)) + '</span>';
+                html += '<span class="month">' + monthsShort(moment().startOf('month').month(i++)) + '</span>';
             }
             this.picker.find('.datepicker-months td').append(html);
         },
 
-        fill: function () {
+        fill: function() {
             var year = this.viewDate.year();
             var month = this.viewDate.month();
             var currentMoment = this.get();
@@ -283,7 +284,8 @@
                 if (prevMonth.day() === this.weekStart) {
                     html.push('<tr>');
                 }
-                clsName = '';
+
+                clsName = this.onRender(prevMonth);
                 //TODO: use diff
                 if (prevMonth.year() < year || (prevMonth.year() == year && prevMonth.month() < month)) {
                     clsName += ' old';
@@ -338,7 +340,7 @@
             yearCont.html(html);
         },
 
-        click: function (e) {
+        click: function(e) {
             e.stopPropagation();
             e.preventDefault();
             var target = $(e.target).closest('span, td, th');
@@ -399,16 +401,16 @@
             }
         },
 
-        dateWithinRange: function (date) {
+        dateWithinRange: function(date) {
             return date >= this.startDate && date <= this.endDate;
         },
 
-        mousedown: function (e) {
+        mousedown: function(e) {
             e.stopPropagation();
             e.preventDefault();
         },
 
-        showMode: function (dir) {
+        showMode: function(dir) {
             if (dir) {
                 this.viewMode = Math.max(this.minViewMode, Math.min(2, this.viewMode + dir));
             }
@@ -418,12 +420,15 @@
             if (this.calendarPlacement == 'left') {
                 this.picker.addClass('datepicker-left');
             }
+        },
+        onRender: function() {
+        	return '';
         }
     };
 
-    $.fn.datepicker = function (option, val) {
+    $.fn.datepicker = function(option, val) {
         var results = [];
-        var chain = this.each(function () {
+        var chain = this.each(function() {
             var $this = $(this),
 				data = $this.data('datepicker'),
 				options = typeof option === 'object' && option;
@@ -443,7 +448,7 @@
     };
 
     $.fn.datepicker.defaults = {
-    	container : 'body'
+    	container: 'body'
     };
     $.fn.datepicker.Constructor = Datepicker;
 
@@ -464,7 +469,7 @@
 			    navFnc: 'years',
 			    navStep: 10
 			}],
-        parseDate: function (value, format) {
+        parseDate: function(value, format) {
             var mmnt = null;
             if (typeof value === "string") {
                 mmnt = moment(value, format);
