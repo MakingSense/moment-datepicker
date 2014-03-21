@@ -1,4 +1,4 @@
-(function ($, ko, moment) {
+(function ($, ko, moment, undefined) {
 
     //#region Utils
 
@@ -30,6 +30,9 @@
     var elBinder = function($el) {
         return {
             set: function (value) {
+                if (value === undefined) {
+                    value = null;
+                }
                 var funcs = elBinder.functions[$el.data(elBinder.DATATYPE_KEY)] || elBinder.functions['_default'];
                 var func = funcs['set'] || elBinder.functions['_default']['set'];
                 return func($el, value);
