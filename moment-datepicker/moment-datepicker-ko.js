@@ -1,4 +1,4 @@
-(function ($, ko, moment) {
+(function ($, ko, moment, undefined) {
 
     //#region Utils
 
