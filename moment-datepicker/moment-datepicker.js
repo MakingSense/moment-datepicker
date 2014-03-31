@@ -192,6 +192,11 @@
             var sourceItem = this.component ? this.component : this.element;
             var offset = sourceItem.offset();
             
+            var zIndex = parseInt(this.element.parents().filter(function () {
+                var zIndex = $(this).css('z-index');
+                return zIndex != 'auto' && zIndex != '0';
+            }).first().css('z-index')) + 10;
+
             if (this.calendarPlacement == 'left') {
                 this.picker.css({
                     top: offset.top + this.height,
@@ -200,7 +205,8 @@
             } else {
                 this.picker.css({
                     top: offset.top + this.height,
-                    left: offset.left
+                    left: offset.left,
+                    zIndex : zIndex
                 });
             }
         },
