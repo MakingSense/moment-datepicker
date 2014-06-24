@@ -344,7 +344,7 @@
             yearCont.html(html);
         },
 
-        click: function (e) {
+        mousedown: function(e) {
             e.stopPropagation();
             e.preventDefault();
             var target = $(e.target).closest('span, td, th');
@@ -407,11 +407,6 @@
 
         dateWithinRange: function (date) {
             return date >= this.startDate && date <= this.endDate;
-        },
-
-        mousedown: function (e) {
-            e.stopPropagation();
-            e.preventDefault();
         },
 
         showMode: function (dir) {
