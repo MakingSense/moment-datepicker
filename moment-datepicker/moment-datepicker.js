@@ -107,7 +107,11 @@
             return (this.moment && this.moment.clone());
         },
         getAsText: function (format) {
-            return (this.moment && this.moment.format(format || this.format)) || '';
+            var displayFormat = this.format;
+            if (Object.prototype.toString.call(displayFormat) === '[object Array]') {
+                displayFormat = displayFormat[0];
+            }
+            return (this.moment && this.moment.format(format || displayFormat)) || '';
         },
         show: function (e) {
 	        
@@ -473,7 +477,11 @@
         parseDate: function (value, format) {
             var mmnt = null;
             if (typeof value === "string") {
-                mmnt = moment(value, format);
+                if (Object.prototype.toString.call(format) === '[object Array]') {
+                    mmnt = moment(value, format, true);
+                } else {
+                    mmnt = moment(value, format);
+                }
             }
             if (!mmnt || !mmnt.isValid()) {
                 mmnt = moment(value);
