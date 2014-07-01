@@ -477,7 +477,11 @@
         parseDate: function (value, format) {
             var mmnt = null;
             if (typeof value === "string") {
-                mmnt = moment(value, format, true);
+                if (Object.prototype.toString.call(format) === '[object Array]') {
+                    mmnt = moment(value, format, true);
+                } else {
+                    mmnt = moment(value, format);
+                }
             }
             if (!mmnt || !mmnt.isValid()) {
                 mmnt = moment(value);
