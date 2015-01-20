@@ -1,8 +1,8 @@
 /* =========================================================
- * MomentDatepicker 
+ * MomentDatepicker
  * Based on http://www.eyecon.ro/bootstrap-datepicker
  * =========================================================
- * Copyright 2012 Andres Moschini 
+ * Copyright 2012 Andres Moschini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@
         var endDateText = options.endDate || this.element.data('datepicker-enddate') || undefined;
         this.endDate = (endDateText) ? DPGlobal.parseDate(endDateText, this.format) : undefined;
         this.isInput = this.element.is('input');
-        this.component = !this.isInput && this.element.is('.date') ? this.element.find('.add-on') : false;
+        this.component = !this.isInput && this.element.is('.date') ? this.element.find('.input-group-addon, .add-on') : false;
 
         if (this.isInput) {
             this.element.on({
@@ -114,11 +114,11 @@
             return (this.moment && this.moment.format(format || displayFormat)) || '';
         },
         show: function (e) {
-	        
+
         	if (this.isInput && this.element.is(':disabled')) { return; }
 
         	else if (this.element.children('input').is(':disabled')) { return; }
-	        
+
             this.picker.show();
             this.height = (this.component && this.component.outerHeight()) || this.element.outerHeight();
             this.place();
@@ -159,7 +159,7 @@
                 return this.hide.apply(this, arguments);
             }
         },
-        
+
         hide: function () {
             this.picker.hide();
             $(window).off('resize', this.place);
@@ -195,7 +195,7 @@
         place: function () {
             var sourceItem = this.component ? this.component : this.element;
             var offset = sourceItem.offset();
-            
+
             var zIndex = parseInt(this.element.parents().filter(function () {
                 var zIndex = $(this).css('z-index');
                 return zIndex != 'auto' && zIndex != '0';

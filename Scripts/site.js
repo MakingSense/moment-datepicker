@@ -33,6 +33,7 @@ $(function () {
     var startDate = moment([2012, 1, 20]);
     var endDate = moment([2012, 1, 25]);
     var $dp4 = $('#dp4').datepicker();
+    $('#alert').hide();
     $dp4.on('changeDate', function (ev) {
         var date = $dp4.datepicker('get');
         $('#startDate').text($dp4.datepicker('getAsText'));
