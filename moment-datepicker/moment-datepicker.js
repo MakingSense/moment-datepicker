@@ -280,7 +280,8 @@
             this.picker.find('.datepicker-days th:eq(1)')
 						.text(moment.langData().months(moment().month(month)) + ' ' + year);
 
-            var prevMonth = moment([year, month, 0]);
+            var prevMonth = moment([year, month, 1]);
+            prevMonth.subtract(1, 'day');
             prevMonth.day(prevMonth.day() - (prevMonth.day() - this.weekStart + 7) % 7);
 
             //TODO: use diff
@@ -521,4 +522,4 @@
 							'</div>' +
 						'</div>';
 
-}(this.jQuery, this.moment)
+}(this.jQuery, this.moment);
