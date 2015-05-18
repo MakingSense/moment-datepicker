@@ -32,6 +32,9 @@
 							    click: $.proxy(this.click, this),
 							    mousedown: $.proxy(this.mousedown, this)
 							});
+
+        this.$viewport = $(options.viewport || options.container);
+
         var startDateText = options.startDate || this.element.data('datepicker-startdate') || undefined;
         this.startDate = (startDateText) ? DPGlobal.parseDate(startDateText, this.format) : undefined;
         var endDateText = options.endDate || this.element.data('datepicker-enddate') || undefined;
@@ -196,6 +199,9 @@
             var sourceItem = this.component ? this.component : this.element;
             var offset = sourceItem.offset();
 
+            var viewportOffset = this.$viewport.offset();
+            var scrollTop = this.$viewport.scrollTop();
+
             var zIndex = parseInt(this.element.parents().filter(function () {
                 var zIndex = $(this).css('z-index');
                 return zIndex != 'auto' && zIndex != '0';
@@ -203,12 +209,12 @@
 
             if (this.calendarPlacement == 'left') {
                 this.picker.css({
-                    top: offset.top + this.height,
+                    top: offset.top + this.height + scrollTop - viewportOffset.top,
                     left: offset.left + sourceItem[0].offsetWidth - this.picker[0].offsetWidth
                 });
             } else {
                 this.picker.css({
-                    top: offset.top + this.height,
+                    top: offset.top + this.height + scrollTop - viewportOffset.top,
                     left: offset.left,
                     zIndex : zIndex
                 });
