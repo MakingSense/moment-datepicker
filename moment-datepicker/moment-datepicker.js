@@ -284,7 +284,7 @@
             var currentMonth = currentMoment ? currentMoment.month() : null;
 
             this.picker.find('.datepicker-days th:eq(1)')
-						.text(moment.langData().months(moment().month(month)) + ' ' + year);
+						.text(this.viewDate.format('MMMM YYYY'));
 
             var prevMonth = moment([year, month, 1]);
             prevMonth.subtract(1, 'day');
