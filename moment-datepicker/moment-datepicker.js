@@ -25,6 +25,7 @@
         this.element = $(element);
         this.autoHide = true && (options.autoHide !== false) && (this.element.data('datepicker-autohide') !== false);
         this.format = options.format || this.element.data('datepicker-format') || moment.langData().longDateFormat('L');
+        this.parseFormat = options.parseFormat || this.format;
         this.calendarPlacement = options.calendarPlacement || this.element.data('datepicker-calendarplacement') || 'right';
         this.picker = $(DPGlobal.template)
 							.appendTo(options.container)
@@ -36,9 +37,9 @@
         this.$viewport = $(options.viewport || options.container);
 
         var startDateText = options.startDate || this.element.data('datepicker-startdate') || undefined;
-        this.startDate = (startDateText) ? DPGlobal.parseDate(startDateText, this.format) : undefined;
+        this.startDate = (startDateText) ? DPGlobal.parseDate(startDateText, this.parseFormat) : undefined;
         var endDateText = options.endDate || this.element.data('datepicker-enddate') || undefined;
-        this.endDate = (endDateText) ? DPGlobal.parseDate(endDateText, this.format) : undefined;
+        this.endDate = (endDateText) ? DPGlobal.parseDate(endDateText, this.parseFormat) : undefined;
         this.isInput = this.element.is('input');
         this.component = !this.isInput && this.element.is('.date') ? this.element.find('.input-group-addon, .add-on') : false;
 
@@ -239,7 +240,7 @@
         update: function (newDate, ommitEvent) {
             var originalValue = this.moment ? this.moment.valueOf() : null;
 
-            this.moment = DPGlobal.parseDate(newDate, this.format);
+            this.moment = DPGlobal.parseDate(newDate, this.parseFormat);
 
             var newValue = this.moment ? this.moment.valueOf() : null;
 
