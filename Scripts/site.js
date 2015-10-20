@@ -1,14 +1,14 @@
-/// <reference path="typings/underscore/underscore.d.ts" />
+﻿/// <reference path="typings/underscore/underscore.d.ts" />
 /// <reference path="typings/moment/moment.d.ts" />
 /// <reference path="typings/knockout/knockout.d.ts" />
 /// <reference path="typings/jquery/jquery.d.ts" />
 /// <reference path="typings/bootstrap/bootstrap.d.ts" />
 /// <reference path="../moment-datepicker/moment-datepicker.d.ts" />
+
 $(function () {
     window.prettyPrint && window.prettyPrint();
-    moment.lang('en');
+    moment.locale('en');
 
-    //moment.lang('es');
     var model = {
         birthdayIso: ko.observable('1978-12-02'),
         birthdayFormat: ko.observable('2/12/78'),
@@ -33,7 +33,6 @@ $(function () {
     var startDate = moment([2012, 1, 20]);
     var endDate = moment([2012, 1, 25]);
     var $dp4 = $('#dp4').datepicker();
-    $('#alert').hide();
     $dp4.on('changeDate', function (ev) {
         var date = $dp4.datepicker('get');
         $('#startDate').text($dp4.datepicker('getAsText'));
