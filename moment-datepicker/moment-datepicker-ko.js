@@ -10,7 +10,7 @@
             }
         }
         return null;
-    }
+    };
 
     detectDataType.isString = function (value) {
         return typeof value === 'string';
@@ -26,10 +26,10 @@
         "isString": "string",
         "isDate": "date"
     };
-    
+
     var elBinder = function($el) {
         return {
-            set: function (value) {
+            set: function(value) {
                 if (value === undefined) {
                     value = null;
                 }
@@ -37,16 +37,16 @@
                 var func = funcs['set'] || elBinder.functions['_default']['set'];
                 return func($el, value);
             },
-            get: function () {
+            get: function() {
                 var funcs = elBinder.functions[$el.data(elBinder.DATATYPE_KEY)] || elBinder.functions['_default'];
                 var func = funcs['get'] || elBinder.functions['_default']['get'];
                 return func($el);
             },
-            register: function (dataType) {
+            register: function(dataType) {
                 $el.data(elBinder.DATATYPE_KEY, dataType);
-            }                
+            }
         }
-    }
+    };
     
     elBinder.DATATYPE_KEY = "datepicker.ko.dataType";
 

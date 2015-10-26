@@ -23,3 +23,7 @@ App_Data
 [Tt]humbs.db
 .DS_Store
 nuget/*.nupkg
+
+.idea
+bower_components
+.vs

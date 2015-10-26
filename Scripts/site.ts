@@ -12,8 +12,7 @@ interface Window extends /*ViewCSS, */MSEventAttachmentTarget, MSWindowExtension
 
 $(function () {
     window.prettyPrint && window.prettyPrint();
-    moment.lang('en');
-    //moment.lang('es');
+    moment.locale('en');
 
     var model = {
         birthdayIso: ko.observable('1978-12-02'),

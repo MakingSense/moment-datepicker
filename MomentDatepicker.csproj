@@ -74,8 +74,8 @@
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
-    <Content Include="Scripts\moment+langs.js" />
-    <Content Include="Scripts\moment+langs.min.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\Prettify\lang-apollo.js" />
@@ -112,6 +112,9 @@
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\underscore.min.map" />
     <Content Include="Scripts\site.js.map" />
+    <Content Include="Scripts\site.min.js.map">
+      <DependentUpon>site.min.js</DependentUpon>
+    </Content>
     <TypeScriptCompile Include="Scripts\site.ts" />
     <Content Include="moment-datepicker\moment-datepicker.min.js">
       <DependentUpon>moment-datepicker.js</DependentUpon>
@@ -163,7 +166,9 @@
     <Content Include="Scripts\site.min.js">
       <DependentUpon>site.ts</DependentUpon>
     </Content>
-    <Content Include="web.config" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="README.md" />
     <Content Include="Scripts\moment.i18n\es.js" />
     <Content Include="packages.config">
@@ -173,6 +178,7 @@
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout\knockout.amd.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout\knockout.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\moment\moment-node.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\moment\moment.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
   </ItemGroup>
