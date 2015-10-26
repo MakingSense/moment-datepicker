@@ -25,3 +25,5 @@ App_Data
 nuget/*.nupkg
 
 .idea
+bower_components
+.vs
