@@ -1,4 +1,4 @@
-ABANDONED REPOSITOY
+ABANDONED REPOSITORY
 ===================
 
 Feel free to for if you want because this repository will not be maintained anymore.
