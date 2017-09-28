@@ -1,3 +1,9 @@
+ABANDONED REPOSITOY
+===================
+
+Feel free to for if you want because this repository will not be maintained anymore.
+
+
 moment-datepicker
 =================
 
