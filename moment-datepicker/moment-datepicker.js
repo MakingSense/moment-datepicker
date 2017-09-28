@@ -209,12 +209,12 @@
 
             if (this.calendarPlacement == 'left') {
                 this.picker.css({
-                    top: offset.top + this.height + scrollTop - viewportOffset.top,
+                    top: offset.top + this.height,
                     left: offset.left + sourceItem[0].offsetWidth - this.picker[0].offsetWidth
                 });
             } else {
                 this.picker.css({
-                    top: offset.top + this.height + scrollTop - viewportOffset.top,
+                    top: offset.top + this.height,
                     left: offset.left,
                     zIndex : zIndex
                 });
